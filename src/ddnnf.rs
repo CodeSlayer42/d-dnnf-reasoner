@@ -4,6 +4,7 @@ pub mod heuristics;
 pub mod counting;
 pub mod multiple_queries;
 pub mod anomalies;
+pub mod extended_ddnnf;
 
 use std::collections::{HashMap, HashSet};
 
