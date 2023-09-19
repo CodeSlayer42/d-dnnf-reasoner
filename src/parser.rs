@@ -25,9 +25,13 @@ use std::{
     rc::Rc, process
 };
 
+use csv::ReaderBuilder;
+use itertools::Itertools;
+
 use rug::{Integer, Complete};
 
 use crate::ddnnf::{Ddnnf, node::Node, node::NodeType};
+use crate::ddnnf::extended_ddnnf::Attribute;
 
 use petgraph::{
     stable_graph::StableGraph,
@@ -634,6 +638,64 @@ pub fn parse_queries_file(path: &str) -> Vec<(usize, Vec<i32>)> {
     }
     parsed_queries
 }
+
+
+pub fn build_attributes(path: &str) -> HashMap<String, Attribute> {
+    let file = open_file_savely(path);
+    let mut reader = ReaderBuilder::new()
+        .has_headers(true)
+        .from_reader(BufReader::new(file));
+
+    let header = reader.headers().expect("File must contain a header.").clone();
+    let records = reader.records()
+        .map(|result| result.unwrap_or_else(|res| panic!("{:?} is not a valid record", res)))
+        .collect_vec();
+
+    let (id_idx, _) = header.iter()
+        .find_position(|&column| column == "(Feature ID,Integer)")
+        .unwrap_or_else(|| panic!("File does not contain the column \"(Feature ID,Integer)\"."));
+    let record_ids = records.iter()
+        .map(|record|
+            record.get(id_idx)
+                .unwrap_or_else(|| panic!("Record {:?} has no value in column \"(Feature ID,Integer)\".", record))
+                .parse::<u32>()
+                .unwrap_or_else(|_| panic!("Record {:?} has no integer value in column \"(Feature ID,Integer)\".", record))
+        );
+    let mut next_expected_id = 1;
+    for id in record_ids {
+        if id != next_expected_id { panic!("Ids in column \"(Feature ID,Integer)\" must be in ascending order starting with \"1\" and increasing by one.") }
+        next_expected_id += 1;
+    }
+
+    let regex = regex::Regex::new(r"^\((?<attr_name>[\w\s]+),(?<attr_type>[\w\s]+)\)$").unwrap();
+    header.iter()
+        .map(|col_name| {
+            let groups = regex.captures(col_name).unwrap_or_else(|| panic!("Colum \"{col_name}\" must have format \"(<attr_name>,<attr_type>)\"."));
+            (groups["attr_name"].to_string(), groups["attr_type"].to_string())
+        })
+        .enumerate()
+        .filter(|(_, (attr_name, _))| attr_name != "Feature ID" && attr_name != "Feature Name")
+        .map(|(attr_idx, (attr_name, attr_type))| {
+
+            let attr_vals = records.iter()
+                .map(|record| record.get(attr_idx))
+                .map(|entry| match entry {
+                    Some("") => None,
+                    other => other
+                });
+
+            let attribute = match attr_type.as_str() {
+                "Integer" => Attribute::new_integer_attr( attr_vals.map(|opt_val| opt_val.map(|val| val.parse().unwrap())).collect(), Some(0)),
+                "Float" => Attribute::new_float_attr( attr_vals.map(|opt_val| opt_val.map(|val| val.parse().unwrap())).collect(), Some(0.0)),
+                "Bool" => Attribute::new_bool_attr( attr_vals.map(|opt_val| opt_val.map(|val| val.parse().unwrap())).collect(), Some(false)),
+                "String" => Attribute::new_string_attr( attr_vals.map(|opt_val| opt_val.map(|val| val.to_string())).collect(), Some("".to_string())),
+                _ => panic!("Unexpected attribute type.")
+            };
+
+            (attr_name.to_string(), attribute)
+        }).collect()
+}
+
 
 /// Tries to open a file.
 /// If an error occurs the program prints the error and exists.
