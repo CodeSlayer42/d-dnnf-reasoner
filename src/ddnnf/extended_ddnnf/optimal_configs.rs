@@ -79,70 +79,26 @@ impl ExtendedDdnnf {
             .sum()
     }
 
-    //############## Recursive ###################
-    //
-    // pub fn calc_best_config_recursive(&self) -> Option<OptimalConfig> {
-    //     self.calc_best_config_for_node_recursive(self.ddnnf.nodes.len() - 1)
-    // }
-    //
-    //
-    // pub fn calc_best_config_for_node_recursive(&self, node_id: usize) -> Option<OptimalConfig> {
-    //     let number_of_variables = self.ddnnf.number_of_variables as usize;
-    //     let node = self.ddnnf.nodes.get(node_id).unwrap_or_else(|| panic!("Node {node_id} does not exist."));
-    //
-    //     match &node.ntype {
-    //         True => Some(OptimalConfig::empty(number_of_variables)),
-    //         False => None,
-    //         Literal { literal } => Some(OptimalConfig::from(&[*literal], &self)),
-    //         And { children } => {
-    //             let configs = children.iter()
-    //                 .map(|&child_node_id| self.calc_best_config_for_node_recursive(child_node_id));
-    //             let mut unified_config = Config::from(&[], number_of_variables);
-    //
-    //             for config_opt in configs {
-    //                 match config_opt {
-    //                     None => return None,
-    //                     Some(config) => unified_config.extend(config.get_decided_literals())
-    //                 }
-    //             }
-    //
-    //             Some(unified_config)
-    //         },
-    //         Or { children } => {
-    //             let best_config = children.iter()
-    //                 .map(|&child_node_id| self.calc_best_config_for_node_recursive(child_node_id))
-    //                 .flatten()
-    //                 .max_by(|left, right| { // as Ord is not implemented for f64
-    //                     let left_val = self.get_config_objective_fn_val(left);
-    //                     let right_val = self.get_config_objective_fn_val(right);
-    //                     left_val.total_cmp(&right_val)
-    //                 });
-    //             best_config
-    //         }
-    //     }
-    // }
 
-    //############## Iterative ###################
-
-    pub fn calc_best_config_iterative(&self) -> Option<OptimalConfig> {
+    pub fn calc_best_config(&self) -> Option<OptimalConfig> {
         let root_node_id = self.ddnnf.nodes.len() - 1;
-        self.calc_best_config_for_node_iterative(root_node_id)
+        self.calc_best_config_for_node(root_node_id)
     }
 
 
-    pub fn calc_best_config_for_node_iterative(&self, node_id: usize) -> Option<OptimalConfig> {
+    pub fn calc_best_config_for_node(&self, node_id: usize) -> Option<OptimalConfig> {
         let node_count = self.ddnnf.nodes.len();
         let mut partial_configs = Vec::with_capacity(node_count);
 
         for id in 0..=node_id {
-            partial_configs.push(self.calc_best_config_for_node_helper_iterative(id, &partial_configs));
+            partial_configs.push(self.calc_best_config_for_node_helper(id, &partial_configs));
         }
 
         partial_configs.remove(node_id)
     }
 
 
-    pub fn calc_best_config_for_node_helper_iterative(&self, node_id: usize, partial_configs: &Vec<Option<OptimalConfig>>) -> Option<OptimalConfig> {
+    pub fn calc_best_config_for_node_helper(&self, node_id: usize, partial_configs: &Vec<Option<OptimalConfig>>) -> Option<OptimalConfig> {
         let number_of_variables = self.ddnnf.number_of_variables as usize;
         let node = self.ddnnf.nodes.get(node_id).unwrap_or_else(|| panic!("Node {node_id} does not exist."));
 
@@ -396,7 +352,7 @@ mod test {
             value
         };
 
-        assert_eq!(ext_ddnnf.calc_best_config_iterative(), Some(expected_optimal_config));
+        assert_eq!(ext_ddnnf.calc_best_config(), Some(expected_optimal_config));
     }
 
     #[test]
