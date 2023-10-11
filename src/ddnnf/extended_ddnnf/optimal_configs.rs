@@ -1,6 +1,7 @@
 use std::cmp::Ordering;
 use std::collections::BinaryHeap;
 use std::hash::{Hash, Hasher};
+use std::ops::Neg;
 use bimap::BiHashMap;
 use itertools::Itertools;
 use crate::ddnnf::anomalies::t_wise_sampling::data_structure::Config;
@@ -70,42 +71,38 @@ impl OptimalConfig {
 
 impl ExtendedDdnnf {
 
-    pub fn get_config_objective_fn_val(&self, config: &Config) -> f64 {
-        config.get_decided_literals()
-            .map(|literal| {
-                if literal < 0 { 0.0 } // deselected
-                else { self.get_objective_fn_val(literal.unsigned_abs()) }
-            })
-            .sum()
-    }
-
-
-    pub fn calc_best_config(&self) -> Option<OptimalConfig> {
+    pub fn calc_best_config(&self, assumptions: &[i32]) -> Option<OptimalConfig> {
         let root_node_id = self.ddnnf.nodes.len() - 1;
-        self.calc_best_config_for_node(root_node_id)
+        self.calc_best_config_for_node(root_node_id, assumptions)
     }
 
 
-    pub fn calc_best_config_for_node(&self, node_id: usize) -> Option<OptimalConfig> {
+    pub fn calc_best_config_for_node(&self, node_id: usize, assumptions: &[i32]) -> Option<OptimalConfig> {
         let node_count = self.ddnnf.nodes.len();
         let mut partial_configs = Vec::with_capacity(node_count);
 
         for id in 0..=node_id {
-            partial_configs.push(self.calc_best_config_for_node_helper(id, &partial_configs));
+            partial_configs.push(self.calc_best_config_for_node_helper(id, assumptions, &partial_configs));
         }
 
         partial_configs.remove(node_id)
     }
 
 
-    pub fn calc_best_config_for_node_helper(&self, node_id: usize, partial_configs: &Vec<Option<OptimalConfig>>) -> Option<OptimalConfig> {
+    pub fn calc_best_config_for_node_helper(&self, node_id: usize, assumptions: &[i32], partial_configs: &Vec<Option<OptimalConfig>>) -> Option<OptimalConfig> {
         let number_of_variables = self.ddnnf.number_of_variables as usize;
         let node = self.ddnnf.nodes.get(node_id).unwrap_or_else(|| panic!("Node {node_id} does not exist."));
 
         match &node.ntype {
             True => Some(OptimalConfig::empty(number_of_variables)),
             False => None,
-            Literal { literal } => Some(OptimalConfig::from(&[*literal], &self)),
+            Literal { literal } => {
+                if assumptions.contains(&literal.neg()) {
+                    None
+                } else {
+                    Some(OptimalConfig::from(&[*literal], &self))
+                }
+            },
             And { children } => {
                 let children_configs = children.iter()
                     .map(|&child_node_id| {
@@ -140,32 +137,38 @@ impl ExtendedDdnnf {
     }
 
 
-    pub fn calc_top_k_configs(&self, k: usize) -> Vec<OptimalConfig> {
+    pub fn calc_top_k_configs(&self, k: usize, assumptions: &[i32]) -> Vec<OptimalConfig> {
         let root_node_id = self.ddnnf.nodes.len() - 1;
-        self.calc_top_k_configs_for_node(root_node_id, k)
+        self.calc_top_k_configs_for_node(root_node_id, k, assumptions)
     }
 
 
-    pub fn calc_top_k_configs_for_node(&self, node_id: usize, k: usize) -> Vec<OptimalConfig> {
+    pub fn calc_top_k_configs_for_node(&self, node_id: usize, k: usize, assumptions: &[i32]) -> Vec<OptimalConfig> {
         let node_count = self.ddnnf.nodes.len();
         let mut partial_configs = Vec::with_capacity(node_count);
 
         for id in 0..=node_id {
-            partial_configs.push(self.calc_top_k_configs_for_node_helper(id, k, &partial_configs));
+            partial_configs.push(self.calc_top_k_configs_for_node_helper(id, k, assumptions, &partial_configs));
         }
 
         partial_configs.remove(node_id)
     }
 
 
-    pub fn calc_top_k_configs_for_node_helper(&self, node_id: usize, k: usize, partial_configs: &Vec<Vec<OptimalConfig>>) -> Vec<OptimalConfig> {
+    pub fn calc_top_k_configs_for_node_helper(&self, node_id: usize, k: usize, assumptions: &[i32], partial_configs: &Vec<Vec<OptimalConfig>>) -> Vec<OptimalConfig> {
         let number_of_variables = self.ddnnf.number_of_variables as usize;
         let node = self.ddnnf.nodes.get(node_id).unwrap_or_else(|| panic!("Node {node_id} does not exist."));
 
         match &node.ntype {
             True => vec![OptimalConfig::empty(number_of_variables)],
             False => vec![],
-            Literal { literal } => vec![OptimalConfig::from(&[*literal], &self)],
+            Literal { literal } => {
+                if assumptions.contains(&literal.neg()) {
+                    vec![]
+                } else {
+                    vec![OptimalConfig::from(&[*literal], &self)]
+                }
+            },
             And { children } => {
                 let children_configs = children.iter()
                     .map(|&child_node_id| {
@@ -314,7 +317,8 @@ mod test {
     }
 
     #[test]
-    fn finding_complete_optimal_configuration() {
+    fn test_finding_best_configuration_without_assumptions() {
+        let assumptions = []; // Nothing
         let ext_ddnnf = build_sandwich_ext_ddnnf_with_objective_function_values();
         let config = Config::from(
             &vec![
@@ -352,7 +356,50 @@ mod test {
             value
         };
 
-        assert_eq!(ext_ddnnf.calc_best_config(), Some(expected_optimal_config));
+        assert_eq!(ext_ddnnf.calc_best_config(&assumptions), Some(expected_optimal_config));
+    }
+
+    #[test]
+    fn test_finding_best_configuration_with_assumptions() {
+        let assumptions = [8, -16]; // Sprinkled, -Vegetables
+        let ext_ddnnf = build_sandwich_ext_ddnnf_with_objective_function_values();
+        let config = Config::from(
+            &vec![
+                1,    // Sandwich
+                2,    // Bread
+                -3,   // Full Grain
+                4,    // Flatbread
+                -5,   // Toast
+                6,    // Cheese
+                7,    // Gouda
+                8,    // Sprinkled
+                -9,   // Slice
+                10,   // Cheddar
+                -11,  // Cream Cheese
+                12,   // Meat
+                13,   // Salami
+                -14,  // Ham
+                -15,  // Chicken Breast
+                -16,  // Vegetables
+                -17,  // Cucumber
+                -18,  // Tomatoes
+                -19   // Lettuce
+            ],
+            ext_ddnnf.ddnnf.number_of_variables as usize
+        );
+        let value = config.get_decided_literals()
+            .map(|literal| {
+                if literal < 0 { 0.0 } // deselected
+                else { ext_ddnnf.get_objective_fn_val(literal.unsigned_abs()) }
+            })
+            .sum();
+
+        let expected_optimal_config = OptimalConfig {
+            config,
+            value
+        };
+
+        assert_eq!(ext_ddnnf.calc_best_config(&assumptions), Some(expected_optimal_config));
     }
 
     #[test]
@@ -437,10 +484,11 @@ mod test {
     }
 
     #[test]
-    fn finding_complete_top_k_configurations() {
+    fn test_finding_top_k_configurations_without_assumptions() {
+        let assumptions = []; // Nothing
         let mut ext_ddnnf = build_sandwich_ext_ddnnf_with_objective_function_values();
 
-        let n_config = ext_ddnnf.ddnnf.execute_query(&[]).to_usize().unwrap();
+        let n_config = ext_ddnnf.ddnnf.execute_query(&assumptions).to_usize().unwrap();
         let best_config_values_brute_force = ext_ddnnf.ddnnf.enumerate(&mut vec![], n_config)
             .unwrap().into_iter()
             .map(|literals| OptimalConfig::from(&literals[..], &ext_ddnnf))
@@ -449,7 +497,28 @@ mod test {
             .map(|config| config.value)
             .collect_vec();
 
-        let best_config_values_top_k = ext_ddnnf.calc_top_k_configs(n_config + 1337).into_iter()
+        let best_config_values_top_k = ext_ddnnf.calc_top_k_configs(n_config + 1337, &assumptions).into_iter()
+            .map(|config| config.value)
+            .collect_vec();
+
+        assert_eq!(best_config_values_top_k, best_config_values_brute_force);
+    }
+
+    #[test]
+    fn test_finding_top_k_configurations_with_assumptions() {
+        let assumptions = [8, -16]; // Sprinkled, -Vegetables
+        let mut ext_ddnnf = build_sandwich_ext_ddnnf_with_objective_function_values();
+
+        let n_config = ext_ddnnf.ddnnf.execute_query(&assumptions).to_usize().unwrap();
+        let best_config_values_brute_force = ext_ddnnf.ddnnf.enumerate(&mut assumptions.to_vec(), n_config)
+            .unwrap().into_iter()
+            .map(|literals| OptimalConfig::from(&literals[..], &ext_ddnnf))
+            .sorted()
+            .rev()
+            .map(|config| config.value)
+            .collect_vec();
+
+        let best_config_values_top_k = ext_ddnnf.calc_top_k_configs(n_config + 1337, &assumptions).into_iter()
             .map(|config| config.value)
             .collect_vec();
 
