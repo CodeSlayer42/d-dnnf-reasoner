@@ -6,7 +6,7 @@ use std::fmt::Display;
 use std::iter;
 
 /// Represents a (partial) configuration
-#[derive(Debug, Clone, Eq)]
+#[derive(Debug, Clone, Eq, Hash)]
 pub struct Config {
     /// A vector of selected features (positive values) and deselected features (negative values)
     literals: Vec<i32>,
