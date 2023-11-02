@@ -1,9 +1,10 @@
-mod objective_function;
-mod optimal_configs;
+pub(crate) mod objective_function;
+pub(crate) mod optimal_configs;
 
 use std::collections::HashMap;
 use itertools::Itertools;
 use crate::Ddnnf;
+use crate::ddnnf::anomalies::t_wise_sampling::data_structure::Config;
 use crate::ddnnf::extended_ddnnf::Attribute::{BoolAttr, FloatAttr, IntegerAttr, StringAttr};
 use crate::ddnnf::extended_ddnnf::AttributeValue::{BoolVal, FloatVal, IntegerVal, StringVal};
 use crate::ddnnf::extended_ddnnf::objective_function::ObjectiveFn;
@@ -11,9 +12,9 @@ use crate::ddnnf::extended_ddnnf::objective_function::ObjectiveFn;
 
 #[derive(Clone, Debug)]
 pub struct ExtendedDdnnf {
-    ddnnf: Ddnnf,
-    attrs: HashMap<String, Attribute>,
-    objective_fn_vals: Option<Vec<f64>>
+    pub(crate) ddnnf: Ddnnf,
+    pub(crate) attrs: HashMap<String, Attribute>,
+    pub(crate) objective_fn_vals: Option<Vec<f64>>
 }
 
 
@@ -109,6 +110,29 @@ impl ExtendedDdnnf {
         }
     }
 
+    pub fn get_objective_fn_val_of_literals(&self, literals: &[i32]) -> f64 {
+        literals.iter()
+            .map(|&literal| {
+                if literal < 0 { 0.0 } // deselected
+                else { self.get_objective_fn_val(literal.unsigned_abs()) }
+            })
+            .sum()
+    }
+
+    pub fn get_objective_fn_val_of_config(&self, config: &Config) -> f64 {
+        let literals = config.get_decided_literals().collect_vec();
+        self.get_objective_fn_val_of_literals(&literals[..])
+    }
+
+    pub fn get_average_objective_fn_val_of_literals(&self, literals: &[i32]) -> f64 {
+        self.get_objective_fn_val_of_literals(literals) / literals.len() as f64
+    }
+
+    pub fn get_average_objective_fn_val_of_config(&self, config: &Config) -> f64 {
+        let literals = config.get_decided_literals().collect_vec();
+        self.get_average_objective_fn_val_of_literals(&literals[..])
+    }
+
     pub fn calc_objective_fn_vals(&mut self, objective_fn: &ObjectiveFn) {
         let vals = (1..=self.ddnnf.number_of_variables)
             .map(|var| objective_fn.eval(var, &self.attrs))
@@ -124,7 +148,7 @@ mod test {
     use crate::parser::{build_attributes, build_ddnnf};
 
     pub fn build_sandwich_ext_ddnnf() -> ExtendedDdnnf {
-        let ddnnf = build_ddnnf("tests/data/sandwich.nnf", None);
+        let ddnnf = build_ddnnf("tests/data/sandwich.nnf", Some(19));
         let attributes = build_attributes("tests/data/sandwich_attribute_vals.csv");
         ExtendedDdnnf::new(ddnnf, attributes)
     }

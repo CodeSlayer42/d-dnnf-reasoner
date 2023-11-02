@@ -1,12 +1,9 @@
 use crate::ddnnf::anomalies::t_wise_sampling::data_structure::{Config, Sample};
-use crate::ddnnf::anomalies::t_wise_sampling::t_iterator::TInteractionIter;
 use crate::ddnnf::anomalies::t_wise_sampling::sample_merger::{OrMerger, SampleMerger};
-use std::cmp::{min, Ordering};
+use std::cmp::Ordering;
 
-use rand::prelude::{SliceRandom, StdRng};
+use rand::prelude::StdRng;
 use std::collections::HashSet;
-
-use streaming_iterator::StreamingIterator;
 
 #[derive(Debug, Copy, Clone)]
 pub struct SimilarityMerger {
@@ -125,7 +122,7 @@ impl<'a> Candidate<'a> {
         &self,
         sample: &Sample,
         t: usize,
-        rng: &mut StdRng,
+        _rng: &mut StdRng,
     ) -> bool {
         if self.max_intersect == self.literals.len() {
             return true;
@@ -143,13 +140,7 @@ impl<'a> Candidate<'a> {
             return false;
         }
 
-        let mut literals: Vec<i32> =
-            self.config.get_decided_literals().collect();
-        literals.shuffle(rng);
-        debug_assert!(!literals.contains(&0));
-
-        TInteractionIter::new(&literals, min(t, literals.len()))
-            .all(|interaction| sample.covers(interaction))
+        sample.is_t_wise_covered(self.config, t)
     }
 }
 

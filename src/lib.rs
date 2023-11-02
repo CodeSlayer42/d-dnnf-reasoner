@@ -7,6 +7,7 @@
 #![warn(clippy::disallowed_types)]
 #[cfg(all(test, feature = "benchmarks"))]
 extern crate test;
+extern crate core;
 
 pub mod parser;
 pub use crate::parser::d4_lexer;

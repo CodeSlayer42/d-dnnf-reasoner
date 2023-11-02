@@ -11,8 +11,9 @@ use crate::NodeType::*;
 
 #[derive(Clone, PartialEq, Debug)]
 pub struct OptimalConfig {
-    config: Config,
-    value: f64
+    pub(crate) config: Config,
+    value: f64,
+    n_literals: usize
 }
 
 impl Eq for OptimalConfig {}
@@ -39,19 +40,16 @@ impl OptimalConfig {
     pub fn empty(number_of_variables: usize) -> Self {
         OptimalConfig {
             config: Config::from(&[], number_of_variables),
-            value: 0.0
+            value: 0.0,
+            n_literals: 0
         }
     }
 
     pub fn from(literals: &[i32], ext_ddnnf: &ExtendedDdnnf) -> Self {
         OptimalConfig {
             config: Config::from(literals, ext_ddnnf.ddnnf.number_of_variables as usize),
-            value: literals.iter().copied()
-                .map(|literal| {
-                    if literal < 0 { 0.0 } // deselected
-                    else { ext_ddnnf.get_objective_fn_val(literal.unsigned_abs()) }
-                })
-                .sum()
+            value: ext_ddnnf.get_objective_fn_val_of_literals(literals),
+            n_literals: literals.len()
         }
     }
 
@@ -64,6 +62,7 @@ impl OptimalConfig {
 
         self.config.extend(other.config.get_decided_literals());
         self.value += other.value;
+        self.n_literals += other.n_literals;
         self
     }
 }
@@ -284,7 +283,7 @@ pub fn merge_top_k_results_or(sorted_lists: Vec<&Vec<OptimalConfig>>, max_amount
 
 
 #[cfg(test)]
-mod test {
+pub(crate) mod test {
     use crate::Ddnnf;
     use crate::ddnnf::extended_ddnnf::test::build_sandwich_ext_ddnnf;
     use super::*;
@@ -320,41 +319,28 @@ mod test {
     fn test_finding_best_configuration_without_assumptions() {
         let assumptions = []; // Nothing
         let ext_ddnnf = build_sandwich_ext_ddnnf_with_objective_function_values();
-        let config = Config::from(
-            &vec![
-                1,    // Sandwich
-                2,    // Bread
-                -3,   // Full Grain
-                4,    // Flatbread
-                -5,   // Toast
-                6,    // Cheese
-                7,    // Gouda
-                -8,   // Sprinkled
-                9,    // Slice
-                10,   // Cheddar
-                -11,  // Cream Cheese
-                12,   // Meat
-                13,   // Salami
-                -14,  // Ham
-                -15,  // Chicken Breast
-                16,   // Vegetables
-                17,   // Cucumber
-                18,   // Tomatoes
-                -19   // Lettuce
-            ],
-            ext_ddnnf.ddnnf.number_of_variables as usize
-        );
-        let value = config.get_decided_literals()
-            .map(|literal| {
-                if literal < 0 { 0.0 } // deselected
-                else { ext_ddnnf.get_objective_fn_val(literal.unsigned_abs()) }
-            })
-            .sum();
-
-        let expected_optimal_config = OptimalConfig {
-            config,
-            value
-        };
+        let literals = [
+            1,    // Sandwich
+            2,    // Bread
+            -3,   // Full Grain
+            4,    // Flatbread
+            -5,   // Toast
+            6,    // Cheese
+            7,    // Gouda
+            -8,   // Sprinkled
+            9,    // Slice
+            10,   // Cheddar
+            -11,  // Cream Cheese
+            12,   // Meat
+            13,   // Salami
+            -14,  // Ham
+            -15,  // Chicken Breast
+            16,   // Vegetables
+            17,   // Cucumber
+            18,   // Tomatoes
+            -19   // Lettuce
+        ];
+        let expected_optimal_config = OptimalConfig::from(&literals, &ext_ddnnf);
 
         assert_eq!(ext_ddnnf.calc_best_config(&assumptions), Some(expected_optimal_config));
     }
@@ -363,41 +349,28 @@ mod test {
     fn test_finding_best_configuration_with_assumptions() {
         let assumptions = [8, -16]; // Sprinkled, -Vegetables
         let ext_ddnnf = build_sandwich_ext_ddnnf_with_objective_function_values();
-        let config = Config::from(
-            &vec![
-                1,    // Sandwich
-                2,    // Bread
-                -3,   // Full Grain
-                4,    // Flatbread
-                -5,   // Toast
-                6,    // Cheese
-                7,    // Gouda
-                8,    // Sprinkled
-                -9,   // Slice
-                10,   // Cheddar
-                -11,  // Cream Cheese
-                12,   // Meat
-                13,   // Salami
-                -14,  // Ham
-                -15,  // Chicken Breast
-                -16,  // Vegetables
-                -17,  // Cucumber
-                -18,  // Tomatoes
-                -19   // Lettuce
-            ],
-            ext_ddnnf.ddnnf.number_of_variables as usize
-        );
-        let value = config.get_decided_literals()
-            .map(|literal| {
-                if literal < 0 { 0.0 } // deselected
-                else { ext_ddnnf.get_objective_fn_val(literal.unsigned_abs()) }
-            })
-            .sum();
-
-        let expected_optimal_config = OptimalConfig {
-            config,
-            value
-        };
+        let literals = [
+            1,    // Sandwich
+            2,    // Bread
+            -3,   // Full Grain
+            4,    // Flatbread
+            -5,   // Toast
+            6,    // Cheese
+            7,    // Gouda
+            8,    // Sprinkled
+            -9,   // Slice
+            10,   // Cheddar
+            -11,  // Cream Cheese
+            12,   // Meat
+            13,   // Salami
+            -14,  // Ham
+            -15,  // Chicken Breast
+            -16,  // Vegetables
+            -17,  // Cucumber
+            -18,  // Tomatoes
+            -19   // Lettuce
+        ];
+        let expected_optimal_config = OptimalConfig::from(&literals, &ext_ddnnf);
 
         assert_eq!(ext_ddnnf.calc_best_config(&assumptions), Some(expected_optimal_config));
     }

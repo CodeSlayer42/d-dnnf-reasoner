@@ -4,10 +4,12 @@ pub mod t_iterator;
 pub mod sample_merger;
 pub mod sat_wrapper;
 
+
 use std::cmp::min;
 use std::collections::{HashMap, HashSet};
 use std::path::Path;
 use std::{fs, io, iter};
+use itertools::Itertools;
 
 use rand::prelude::{SliceRandom, StdRng};
 use rand::SeedableRng;
@@ -17,6 +19,10 @@ use crate::ddnnf::anomalies::t_wise_sampling::SamplingResult::ResultWithSample;
 
 use crate::parser::util::format_vec;
 use crate::{Ddnnf, NodeType::*};
+use crate::ddnnf::anomalies::t_wise_sampling::sample_merger::attribute_similarity_merger::AttributeSimilarityMerger;
+use crate::ddnnf::anomalies::t_wise_sampling::sample_merger::attribute_zipping_merger::AttributeZippingMerger;
+use crate::ddnnf::extended_ddnnf::ExtendedDdnnf;
+use crate::ddnnf::extended_ddnnf::objective_function::FloatOrd;
 
 use self::covering_strategies::cover_with_caching;
 use self::data_structure::Sample;
@@ -58,11 +64,107 @@ impl Ddnnf {
                 &sat_solver,
                 &mut rng,
             );
-            sampler.complete_partial_configs(&mut sample, root_id, &sat_solver);
+            complete_partial_configs(&mut sample, root_id, &sat_solver, self.number_of_variables as i32);
             ResultWithSample(sample)
         } else {
             sampling_result
         }
+    }
+}
+
+impl ExtendedDdnnf {
+    pub fn sample_t_wise(&self, t: usize) -> SamplingResult {
+        let sat_solver = SatWrapper::new(&self.ddnnf);
+        let and_merger = AttributeZippingMerger {
+            t,
+            sat_solver: &sat_solver,
+            ext_ddnnf: self,
+        };
+        let or_merger = AttributeSimilarityMerger {
+            t,
+            ext_ddnnf: self
+        };
+        let mut rng = StdRng::seed_from_u64(42);
+        let mut sampler = TWiseSampler::new(&self.ddnnf, and_merger, or_merger);
+
+        for node_id in 0..sampler.ddnnf.nodes.len() {
+            let partial_sample = sampler.make_partial_sample(node_id, &mut rng);
+            sampler.partial_samples.insert(node_id, partial_sample);
+        }
+
+        let root_id = sampler.ddnnf.nodes.len() - 1;
+
+        let sampling_result = sampler
+            .partial_samples
+            .remove(&root_id)
+            .expect("Root sample does not exist!");
+
+        if let ResultWithSample(mut sample) = sampling_result {
+            debug_assert!(sample.complete_configs.iter()
+                              .all(|config| !config.get_literals().contains(&0)),
+                          "Complete Configs must not contain undecided variables.");
+
+            sample = trim_and_resample(
+                root_id,
+                sample,
+                t,
+                self.ddnnf.number_of_variables as usize,
+                &sat_solver,
+                &mut rng,
+            );
+            complete_partial_configs_optimal(&mut sample, self);
+            ResultWithSample(sample)
+        } else {
+            sampling_result
+        }
+    }
+
+
+    pub fn sample_t_wise_yasa(&self, t: usize) -> Sample {
+        let sat_solver = SatWrapper::new(&self.ddnnf);
+        let vars = (1..=self.ddnnf.number_of_variables).into_iter().collect_vec();
+        let literals = (-(self.ddnnf.number_of_variables as i32)..=self.ddnnf.number_of_variables as i32)
+            .filter(|&literal| literal != 0)
+            .collect_vec();
+        let root_id = self.ddnnf.nodes.len() - 1;
+        let mut sample = Sample::new(vars.into_iter().collect());
+
+        let mut interactions = Vec::new();
+        TInteractionIter::new(&literals[..], min(literals.len(), t))
+            .for_each(|interaction| interactions.push(interaction.to_vec()));
+
+        interactions.iter()
+            .sorted_by_cached_key(|interaction| {
+                FloatOrd::from(self.get_objective_fn_val_of_literals(&interaction[..]))
+            })
+            .rev()
+            .for_each(|interaction| {
+                cover_with_caching(
+                    &mut sample,
+                    &interaction,
+                    &sat_solver,
+                    root_id,
+                    self.ddnnf.number_of_variables as usize,
+                );
+                sample.partial_configs.sort_by_cached_key(|config|
+                    FloatOrd::from(self.get_average_objective_fn_val_of_config(config))
+                );
+            });
+
+        let mut rng = StdRng::seed_from_u64(42);
+        sample = trim_and_resample(
+            root_id,
+            sample,
+            t,
+            self.ddnnf.number_of_variables as usize,
+            &sat_solver,
+            &mut rng,
+        );
+        complete_partial_configs_optimal(&mut sample, self);
+
+        sample.literals = literals;
+
+        sample
     }
 }
 
@@ -252,41 +354,58 @@ impl<'a, A: AndMerger, O: OrMerger> TWiseSampler<'a, A, O> {
             ResultWithSample(sample)
         }
     }
+}
 
-    fn complete_partial_configs(
-        &self,
-        sample: &mut Sample,
-        root: usize,
-        sat_solver: &SatWrapper,
-    ) {
-        let vars: Vec<i32> =
-            (1..=self.ddnnf.number_of_variables as i32).collect();
-        for config in sample.partial_configs.iter_mut() {
-            for &var in vars.iter() {
-                if config.contains(var) || config.contains(-var) {
-                    continue;
-                }
+fn complete_partial_configs(
+    sample: &mut Sample,
+    root: usize,
+    sat_solver: &SatWrapper,
+    number_of_variables: i32,
+) {
+    let vars: Vec<i32> =
+        (1..=number_of_variables).collect();
+    for config in sample.partial_configs.iter_mut() {
+        for &var in vars.iter() {
+            if config.contains(var) || config.contains(-var) {
+                continue;
+            }
 
-                config.update_sat_state(sat_solver, root);
+            config.update_sat_state(sat_solver, root);
 
-                // clone sat state so that we don't change the state that is cached in the config
-                let mut sat_state = config.get_sat_state().cloned().expect(
-                    "sat state should exist after calling update_sat_state()",
-                );
+            // clone sat state so that we don't change the state that is cached in the config
+            let mut sat_state = config.get_sat_state().cloned().expect(
+                "sat state should exist after calling update_sat_state()",
+            );
 
-                if sat_solver.is_sat_cached(&[var], &mut sat_state) {
-                    config.add(var);
-                } else {
-                    config.add(-var);
-                }
+            if sat_solver.is_sat_cached(&[var], &mut sat_state) {
+                config.add(var);
+            } else {
+                config.add(-var);
             }
         }
+    }
 
-        debug_assert!(sample
-            .iter()
-            .all(|config| !config.get_literals().contains(&0)));
+    debug_assert!(sample
+        .iter()
+        .all(|config| !config.get_literals().contains(&0)));
+}
+
+
+fn complete_partial_configs_optimal(sample: &mut Sample, ext_ddnnf: &ExtendedDdnnf) {
+    while let Some(config) = sample.partial_configs.pop() {
+        let literals = config.get_decided_literals().collect_vec();
+        let completed_config = ext_ddnnf.calc_best_config(&literals[..]).expect("Config should be exist");
+
+        debug_assert!(
+            completed_config.config.get_n_decided_literals() == sample.vars.len(),
+            "{:?} != {:?}",
+            completed_config.config.get_n_decided_literals(), sample.vars.len()
+        );
+
+        sample.add(completed_config.config);
     }
 }
+
 
 #[inline]
 fn trim_and_resample(
@@ -312,7 +431,7 @@ fn trim_and_resample(
     literals_to_resample.sort_unstable();
     literals_to_resample.shuffle(rng);
 
-    let mut iter = TInteractionIter::new(&literals_to_resample, t);
+    let mut iter = TInteractionIter::new(&literals_to_resample, min(t, literals_to_resample.len()));
     while let Some(interaction) = iter.next() {
         cover_with_caching(
             &mut new_sample,
@@ -355,7 +474,7 @@ fn trim_sample(
 #[inline]
 fn calc_stats(sample: &Sample, t: usize) -> (Vec<f64>, f64) {
     let mut unique_coverage = vec![0; sample.len()];
-    let mut iter = TInteractionIter::new(sample.get_literals(), t);
+    let mut iter = TInteractionIter::new(sample.get_literals(), min(sample.get_literals().len(), t));
     while let Some(interaction) = iter.next() {
         if let Some(conf_index) = find_unique_covering_conf(sample, interaction)
         {
@@ -367,7 +486,7 @@ fn calc_stats(sample: &Sample, t: usize) -> (Vec<f64>, f64) {
     let mut sum: f64 = 0.0;
 
     for (index, config) in sample.iter().enumerate() {
-        let config_size = config.get_decided_literals().count();
+        let config_size = config.get_n_decided_literals();
         ranks[index] =
             unique_coverage[index] as f64 / config_size.pow(t as u32) as f64;
         sum += ranks[index];
@@ -429,46 +548,71 @@ pub fn save_sample_to_file(
 
 #[cfg(test)]
 mod test {
+    use std::collections::HashSet;
     use itertools::Itertools;
+    use streaming_iterator::StreamingIterator;
 
     use crate::{Ddnnf, parser::build_ddnnf};
+    use crate::ddnnf::anomalies::t_wise_sampling::data_structure::Sample;
+    use crate::ddnnf::anomalies::t_wise_sampling::t_iterator::TInteractionIter;
+    use crate::ddnnf::extended_ddnnf::optimal_configs::test::build_sandwich_ext_ddnnf_with_objective_function_values;
+
+    fn check_validity_of_sample(sample: &Sample, ddnnf: &Ddnnf, t: usize) {
+        let sample_literals: HashSet<i32> = sample.get_literals().iter().copied().collect();
+        sample.iter()
+            .for_each(|config| {
+                assert!(config.get_decided_literals().all(|literal| sample_literals.contains(&literal)));
+            });
+
+        sample.iter()
+            .map(|config| config.get_decided_literals().collect_vec())
+            .for_each(|literals| {
+                // every config must be complete and satisfiable
+                assert_eq!(ddnnf.number_of_variables as usize, literals.len(), "config is not complete");
+                assert!(ddnnf.sat_immutable(&literals[..]));
+            });
+
+        let all_literals = (-(ddnnf.number_of_variables as i32)..=ddnnf.number_of_variables as i32)
+            .filter(|&literal| literal != 0)
+            .collect_vec();
+
+        TInteractionIter::new(&all_literals[..], t)
+            .filter(|interaction| ddnnf.sat_immutable(interaction))
+            .for_each(|interaction| assert!(sample.covers(interaction), "Valid interaction {:?} is not covered.", interaction));
+    }
 
     #[test]
-    fn t_wise_sampling_validity() {
-        let mut vp9: Ddnnf =
-            build_ddnnf("tests/data/VP9_d4.nnf", Some(42));
-        let mut auto1: Ddnnf =
-            build_ddnnf("tests/data/auto1_d4.nnf", Some(2513));
+    fn ddnnf_t_wise_sampling_validity_small_model() {
+        let vp9: Ddnnf = build_ddnnf("tests/data/VP9_d4.nnf", Some(42));
 
-        check_validity_samplingresult(&mut vp9, 1);
-        check_validity_samplingresult(&mut vp9, 2);
-        check_validity_samplingresult(&mut vp9, 3);
-        check_validity_samplingresult(&mut vp9, 4);
-        check_validity_samplingresult(&mut auto1, 1);
+        for t in 1..=4 {
+            check_validity_of_sample(vp9.sample_t_wise(t).get_sample().unwrap(), &vp9, t);
+        }
+    }
 
-        fn check_validity_samplingresult(ddnnf: &mut Ddnnf, t: usize) {
-            let t_wise_samples = ddnnf.sample_t_wise(t);
-            let configs = t_wise_samples.get_sample().unwrap().iter()
-                .map(|config| config.get_literals()).collect_vec();
+    #[test]
+    fn ddnnf_t_wise_sampling_validity_big_model() {
+        let mut auto1: Ddnnf = build_ddnnf("tests/data/auto1_d4.nnf", Some(2513));
+        let t = 1;
 
-            for config in configs.iter() {
-                // every config must be complete and satisfiable
-                assert_eq!(ddnnf.number_of_variables as usize, config.len(), "config is not complete");
-                assert!(ddnnf.sat(config));
-            }
+        check_validity_of_sample(auto1.sample_t_wise(t).get_sample().unwrap(), &mut auto1, t);
+    }
 
-            let mut possible_features = (-(ddnnf.number_of_variables as i32)..=ddnnf.number_of_variables as i32).collect_vec();
-            possible_features.remove(ddnnf.number_of_variables as usize); // remove the 0
-            for combi in possible_features.into_iter().combinations(t) {
-                // checks if the pair can be found in at least one of the samples
-                let combi_exists = |combi: &[i32]| -> bool {
-                    configs.iter().any(|config|
-                        combi.iter().all(|&f| config[f.abs() as usize - 1] == f)
-                    )
-                };
-                
-                assert!(combi_exists(&combi) || !ddnnf.sat(&combi), "combination: {:?} can neither be convered with samples nor is it unsat", combi)
-            }
+    #[test]
+    fn ext_ddnnf_t_wise_sampling_validity() {
+        let ext_ddnnf = build_sandwich_ext_ddnnf_with_objective_function_values();
+
+        for t in 1..=4 {
+            check_validity_of_sample(ext_ddnnf.sample_t_wise(t).get_sample().unwrap(), &ext_ddnnf.ddnnf, t);
+        }
+    }
+
+    #[test]
+    fn ext_ddnnf_t_wise_sampling_yasa_validity() {
+        let ext_ddnnf = build_sandwich_ext_ddnnf_with_objective_function_values();
+
+        for t in 1..=4 {
+            check_validity_of_sample(&ext_ddnnf.sample_t_wise_yasa(t), &ext_ddnnf.ddnnf, t);
         }
     }
 }

@@ -5,6 +5,10 @@ use rand::prelude::StdRng;
 pub mod similarity_merger;
 pub mod zipping_merger;
 
+pub mod attribute_similarity_merger;
+
+pub mod attribute_zipping_merger;
+
 pub(super) trait SampleMerger {
     /// Creates a new sample by merging two samples.
     /// The merging follows the behaviour defined by the merger.

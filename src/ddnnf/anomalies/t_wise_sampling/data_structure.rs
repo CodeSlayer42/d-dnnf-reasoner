@@ -1,9 +1,11 @@
 use crate::ddnnf::anomalies::t_wise_sampling::sat_wrapper::SatWrapper;
 use crate::parser::util::format_vec;
-use std::cmp::Ordering;
+use std::cmp::{min, Ordering};
 use std::collections::HashSet;
 use std::fmt::Display;
 use std::iter;
+use streaming_iterator::StreamingIterator;
+use crate::ddnnf::anomalies::t_wise_sampling::t_iterator::TInteractionIter;
 
 /// Represents a (partial) configuration
 #[derive(Debug, Clone, Eq, Hash)]
@@ -12,6 +14,8 @@ pub struct Config {
     literals: Vec<i32>,
     pub sat_state: Option<Vec<bool>>,
     sat_state_complete: bool,
+    /// The number of decided literals
+    n_decided_literals: usize,
 }
 
 impl PartialEq for Config {
@@ -43,6 +47,7 @@ impl Config {
             literals: vec![0; number_of_variables],
             sat_state: None,
             sat_state_complete: false,
+            n_decided_literals: 0
         };
         config.extend(literals.iter().copied());
         config
@@ -67,8 +72,8 @@ impl Config {
                 marker does not propagate upward to the AND. So the AND remains unmarked which
                 is wrong and may cause wrong results when SAT solving.
                  */
-                if left.get_decided_literals().count()
-                    >= right.get_decided_literals().count()
+                if left.get_n_decided_literals()
+                    >= right.get_n_decided_literals()
                 {
                     Some(left_state)
                 } else {
@@ -83,6 +88,7 @@ impl Config {
             literals: vec![0; number_of_variables],
             sat_state,
             sat_state_complete: false, // always false because we can not combine the states
+            n_decided_literals: 0
         };
         config.extend(left.get_decided_literals());
         config.extend(right.get_decided_literals());
@@ -116,6 +122,12 @@ impl Config {
     /// Returns whether the cached sat state is complete (true) or incomplete (false)
     fn is_sat_state_complete(&self) -> bool {
         self.sat_state_complete
+    }
+
+    /// Returns the number of decided literals
+    pub fn get_n_decided_literals(&self) -> usize {
+        debug_assert!(self.n_decided_literals == self.get_decided_literals().count());
+        self.n_decided_literals
     }
 
     /// Uses the given [SatWrapper] to update the cached sat solver state in this config.
@@ -174,7 +186,15 @@ impl Config {
         debug_assert!(literal != 0);
         self.sat_state_complete = false;
         let index = literal.unsigned_abs() as usize - 1;
+        if self.literals[index] == 0 {
+            self.n_decided_literals += 1;
+        }
         self.literals[index] = literal;
+    }
+
+    /// Checks if the config is complete (all literals are decided)
+    pub fn is_complete(&self) -> bool {
+        self.n_decided_literals == self.literals.len()
     }
 }
 
@@ -345,7 +365,7 @@ impl Sample {
     /// assert!(!sample.is_config_complete(&Config::from(&[1,2], 3)));
     /// ```
     pub fn is_config_complete(&self, config: &Config) -> bool {
-        let decided_literals = config.get_decided_literals().count();
+        let decided_literals = config.get_n_decided_literals();
         debug_assert!(
             decided_literals <= self.vars.len(),
             "Can not insert config with more vars than the sample defines"
@@ -396,6 +416,15 @@ impl Sample {
     pub fn covers(&self, interaction: &[i32]) -> bool {
         debug_assert!(!interaction.contains(&0));
         self.iter().any(|conf| conf.covers(interaction))
+    }
+
+    pub fn is_t_wise_covered(&self, config: &Config, t: usize) -> bool {
+        let literals: Vec<i32> =
+            config.get_decided_literals().collect();
+        debug_assert!(!literals.contains(&0));
+
+        TInteractionIter::new(&literals, min(t, literals.len()))
+            .all(|interaction| self.covers(interaction))
     }
 }
 

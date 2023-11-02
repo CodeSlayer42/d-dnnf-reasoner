@@ -103,7 +103,7 @@ impl SampleMerger for ZippingMerger<'_> {
 impl ZippingMerger<'_> {
     /// Creates a new sample by zipping the given samples together. It is assumed that the vars
     /// covered by the samples are disjoint. For decomposable AND nodes this is always the case.
-    fn zip_samples(
+    pub(crate) fn zip_samples(
         left: &Sample,
         right: &Sample,
         number_of_variables: usize,

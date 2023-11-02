@@ -1,9 +1,29 @@
+use std::cmp::Ordering;
 use std::collections::HashMap;
 use regex::Regex;
 use super::Attribute;
 use super::Attribute::{BoolAttr, FloatAttr, IntegerAttr, StringAttr};
 use self::ObjectiveFn::*;
 use self::Condition::*;
+
+
+#[derive(PartialEq, PartialOrd, Clone, Copy, Debug)]
+pub struct FloatOrd { val: f64 }
+
+impl Ord for FloatOrd {
+    fn cmp(&self, other: &Self) -> Ordering {
+        self.val.total_cmp(&other.val)
+    }
+}
+
+impl std::cmp::Eq for FloatOrd {}
+
+impl FloatOrd {
+    pub fn from(val: f64) -> Self {
+        Self { val }
+    }
+}
+
 
 pub enum ObjectiveFn {
     IfElse(Box<Condition>, Box<ObjectiveFn>, Box<ObjectiveFn>),
