@@ -1,4 +1,4 @@
-use crate::ddnnf::anomalies::t_wise_sampling::covering_strategies::cover_with_caching;
+use crate::ddnnf::anomalies::t_wise_sampling::covering_strategies::cover_with_caching_sorted;
 use crate::ddnnf::anomalies::t_wise_sampling::data_structure::{Config, Sample};
 use crate::ddnnf::anomalies::t_wise_sampling::t_iterator::TInteractionIter;
 use crate::ddnnf::anomalies::t_wise_sampling::sample_merger::{AndMerger, SampleMerger};
@@ -31,6 +31,11 @@ impl SampleMerger for AttributeZippingMerger<'_> {
         _rng: &mut StdRng,
     ) -> Sample {
 
+        // debug_assert!(self.ext_ddnnf.are_configs_sorted(left.partial_configs.iter().collect()));
+        // debug_assert!(self.ext_ddnnf.are_configs_sorted(left.complete_configs.iter().collect()));
+        // debug_assert!(self.ext_ddnnf.are_configs_sorted(right.partial_configs.iter().collect()));
+        // debug_assert!(self.ext_ddnnf.are_configs_sorted(right.complete_configs.iter().collect()));
+
         if left.is_empty() {
             return right.clone();
         } else if right.is_empty() {
@@ -53,7 +58,7 @@ impl SampleMerger for AttributeZippingMerger<'_> {
         debug_assert!(!left_literals.iter().any(|x| *x == 0));
         debug_assert!(!right_literals.iter().any(|x| *x == 0));
 
-        let mut interactions = Vec::new();
+        let mut interactions_to_cover = Vec::new();
 
 
         // for k in 1..self.t {
@@ -85,28 +90,31 @@ impl SampleMerger for AttributeZippingMerger<'_> {
                             TInteractionIter::new(&right_literals, right_len)
                                 .for_each(|right_part| {
                                     let interaction = left_part.iter().chain(right_part.iter()).copied().collect_vec();
-                                    interactions.push(interaction);
+                                    if !new_sample.covers(&interaction) {
+                                        interactions_to_cover.push(interaction);
+                                    }
                                 });
                         });
         }
 
-        interactions.iter()
+        interactions_to_cover.iter()
             .sorted_by_cached_key(|interaction| {
                 FloatOrd::from(self.ext_ddnnf.get_objective_fn_val_of_literals(&interaction[..]))
             })
             .rev()
             .for_each(|interaction| {
-                cover_with_caching(
+                cover_with_caching_sorted(
                     &mut new_sample,
                     &interaction,
                     self.sat_solver,
                     node_id,
                     self.ext_ddnnf.ddnnf.number_of_variables as usize,
-                );
-                new_sample.partial_configs.sort_by_cached_key(|config|
-                    FloatOrd::from(self.ext_ddnnf.get_average_objective_fn_val_of_config(config))
+                    self.ext_ddnnf
                 );
             });
+
+        // debug_assert!(self.ext_ddnnf.are_configs_sorted(new_sample.partial_configs.iter().collect()));
+        // debug_assert!(self.ext_ddnnf.are_configs_sorted(new_sample.complete_configs.iter().collect()));
 
         new_sample
     }
@@ -136,46 +144,59 @@ impl AttributeZippingMerger<'_> {
 
         let mut new_sample = Sample::new_from_samples(&[left, right]);
 
-        let left_sorted = left.iter_with_completeness()
-            .sorted_by_cached_key(|(config, _)| {
-                FloatOrd::from(ext_ddnnf.get_average_objective_fn_val_of_config(config))
-            })
-            .collect_vec();
+        // let left_sorted = left.iter_with_completeness()
+        //     .sorted_by_cached_key(|(config, _)| {
+        //         FloatOrd::from(ext_ddnnf.get_average_objective_fn_val_of_config(config))
+        //     })
+        //     .collect_vec();
+        //
+        // let right_sorted = right.iter_with_completeness()
+        //     .sorted_by_cached_key(|(config, _)|
+        //         FloatOrd::from(ext_ddnnf.get_average_objective_fn_val_of_config(config))
+        //     )
+        //     .collect_vec();
 
-        let right_sorted = right.iter_with_completeness()
-            .sorted_by_cached_key(|(config, _)|
-                FloatOrd::from(ext_ddnnf.get_average_objective_fn_val_of_config(config))
-            )
-            .collect_vec();
+        let left_sorted = ext_ddnnf.merge_sorted_configs(left.partial_configs.iter().collect(), left.complete_configs.iter().collect());
+        let right_sorted = ext_ddnnf.merge_sorted_configs(right.partial_configs.iter().collect(), right.complete_configs.iter().collect());
 
-        left_sorted.iter().rev()
-            .zip(right_sorted.iter().rev())
+        // debug_assert!(ext_ddnnf.are_configs_sorted(left_sorted.clone()));
+        // debug_assert!(ext_ddnnf.are_configs_sorted(right_sorted.clone()));
+
+        left_sorted.iter()
+            .zip(right_sorted.iter())
             .for_each(
-                |(
-                     (left_config, left_complete),
-                     (right_config, right_complete),
-                 )| {
+                |(left_config, right_config)| {
                     let new_config = Config::from_disjoint(
                         left_config,
                         right_config,
                         ext_ddnnf.ddnnf.number_of_variables as usize,
                     );
-                    if *left_complete && *right_complete {
-                        new_sample.add_complete(new_config);
+                    if new_sample.is_config_complete(&new_config) {
+                        ext_ddnnf.insert_config_sorted(new_config, &mut new_sample.complete_configs);
                     } else {
-                        new_sample.add_partial(new_config);
+                        ext_ddnnf.insert_config_sorted(new_config, &mut new_sample.partial_configs);
                     }
                 },
             );
 
+        // debug_assert!(ext_ddnnf.are_configs_sorted(new_sample.partial_configs.iter().collect()));
+        // debug_assert!(ext_ddnnf.are_configs_sorted(new_sample.complete_configs.iter().collect()));
+
         let remaining = if left.len() >= right.len() {
-            left_sorted.into_iter().rev().skip(right.len())
+            left_sorted.into_iter().skip(right.len())
         } else {
-            right_sorted.into_iter().rev().skip(left.len())
+            right_sorted.into_iter().skip(left.len())
         };
-        remaining.for_each(|(config, _)| {
-            new_sample.add_partial(config.clone())
-            });
+        remaining.for_each(|config| {
+            if new_sample.is_config_complete(config) {
+                ext_ddnnf.insert_config_sorted(config.clone(), &mut new_sample.complete_configs);
+            } else {
+                ext_ddnnf.insert_config_sorted(config.clone(), &mut new_sample.partial_configs);
+            }
+        });
+
+        // debug_assert!(ext_ddnnf.are_configs_sorted(new_sample.partial_configs.iter().collect()));
+        // debug_assert!(ext_ddnnf.are_configs_sorted(new_sample.complete_configs.iter().collect()));
 
         new_sample
     }

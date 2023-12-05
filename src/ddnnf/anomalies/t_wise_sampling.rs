@@ -19,6 +19,7 @@ use crate::ddnnf::anomalies::t_wise_sampling::SamplingResult::ResultWithSample;
 
 use crate::parser::util::format_vec;
 use crate::{Ddnnf, NodeType::*};
+use crate::ddnnf::anomalies::t_wise_sampling::covering_strategies::cover_with_caching_sorted;
 use crate::ddnnf::anomalies::t_wise_sampling::sample_merger::attribute_similarity_merger::AttributeSimilarityMerger;
 use crate::ddnnf::anomalies::t_wise_sampling::sample_merger::attribute_zipping_merger::AttributeZippingMerger;
 use crate::ddnnf::extended_ddnnf::ExtendedDdnnf;
@@ -73,7 +74,7 @@ impl Ddnnf {
 }
 
 impl ExtendedDdnnf {
-    pub fn sample_t_wise(&self, t: usize) -> SamplingResult {
+    pub fn sample_t_wise(&self, t: usize, optimal_completion: bool) -> SamplingResult {
         let sat_solver = SatWrapper::new(&self.ddnnf);
         let and_merger = AttributeZippingMerger {
             t,
@@ -112,7 +113,13 @@ impl ExtendedDdnnf {
                 &sat_solver,
                 &mut rng,
             );
-            complete_partial_configs_optimal(&mut sample, self);
+
+            if optimal_completion {
+                complete_partial_configs_optimal(&mut sample, self);
+            } else {
+                complete_partial_configs(&mut sample, root_id, &sat_solver, self.ddnnf.number_of_variables as i32);
+            }
+
             ResultWithSample(sample)
         } else {
             sampling_result
@@ -139,15 +146,13 @@ impl ExtendedDdnnf {
             })
             .rev()
             .for_each(|interaction| {
-                cover_with_caching(
+                cover_with_caching_sorted(
                     &mut sample,
                     &interaction,
                     &sat_solver,
                     root_id,
                     self.ddnnf.number_of_variables as usize,
-                );
-                sample.partial_configs.sort_by_cached_key(|config|
-                    FloatOrd::from(self.get_average_objective_fn_val_of_config(config))
+                    self
                 );
             });
 
@@ -603,7 +608,7 @@ mod test {
         let ext_ddnnf = build_sandwich_ext_ddnnf_with_objective_function_values();
 
         for t in 1..=4 {
-            check_validity_of_sample(ext_ddnnf.sample_t_wise(t).get_sample().unwrap(), &ext_ddnnf.ddnnf, t);
+            check_validity_of_sample(ext_ddnnf.sample_t_wise(t, true).get_sample().unwrap(), &ext_ddnnf.ddnnf, t);
         }
     }
 

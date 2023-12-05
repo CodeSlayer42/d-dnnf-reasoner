@@ -139,6 +139,60 @@ impl ExtendedDdnnf {
             .collect_vec();
         self.objective_fn_vals = Some(vals);
     }
+
+    pub fn merge_sorted_configs<'a>(&self, left: Vec<&'a Config>, right: Vec<&'a Config>) -> Vec<&'a Config> {
+        let mut sorted_configs = Vec::with_capacity(left.len() + right.len());
+        let mut left_idx = 0;
+        let mut right_idx = 0;
+
+        while left_idx < left.len() && right_idx < right.len() {
+            if self.get_average_objective_fn_val_of_config(left[left_idx])
+                >= self.get_average_objective_fn_val_of_config(right[right_idx]) {
+                sorted_configs.push(left[left_idx]);
+                left_idx += 1;
+            } else {
+                sorted_configs.push(right[right_idx]);
+                right_idx += 1;
+            }
+        }
+
+        while left_idx < left.len() {
+            sorted_configs.push(left[left_idx]);
+            left_idx += 1;
+        }
+
+        while right_idx < right.len() {
+            sorted_configs.push(right[right_idx]);
+            right_idx += 1;
+        }
+
+        sorted_configs
+    }
+
+    pub fn insert_config_sorted(&self, config: Config, sorted_configs: &mut Vec<Config>) {
+        let config_val = self.get_average_objective_fn_val_of_config(&config);
+
+        let mut curr_idx = sorted_configs.len();
+        sorted_configs.push(config);
+
+        while curr_idx > 0 && config_val > self.get_average_objective_fn_val_of_config(&sorted_configs[curr_idx]) {
+            sorted_configs.swap(curr_idx, curr_idx - 1);
+            curr_idx -= 1;
+        }
+    }
+
+    pub fn are_configs_sorted(&self, configs: Vec<&Config>) -> bool {
+        let mut curr_val = f64::MAX;
+        for config in configs {
+            let next_val = self.get_average_objective_fn_val_of_config(config);
+            if next_val > curr_val {
+                return false;
+            }
+            curr_val = next_val;
+        }
+
+        true
+    }
 }
 
 

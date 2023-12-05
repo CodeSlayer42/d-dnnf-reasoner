@@ -1,10 +1,8 @@
 use crate::ddnnf::anomalies::t_wise_sampling::data_structure::Sample;
 use crate::ddnnf::anomalies::t_wise_sampling::sample_merger::{OrMerger, SampleMerger};
 use rand::prelude::StdRng;
-use itertools::Itertools;
 
 use crate::ddnnf::extended_ddnnf::ExtendedDdnnf;
-use crate::ddnnf::extended_ddnnf::objective_function::FloatOrd;
 
 #[derive(Debug, Copy, Clone)]
 pub struct AttributeSimilarityMerger<'a> {
@@ -24,6 +22,11 @@ impl SampleMerger for AttributeSimilarityMerger<'_> {
         _rng: &mut StdRng,
     ) -> Sample {
 
+        // debug_assert!(self.ext_ddnnf.are_configs_sorted(left.partial_configs.iter().collect()));
+        // debug_assert!(self.ext_ddnnf.are_configs_sorted(left.complete_configs.iter().collect()));
+        // debug_assert!(self.ext_ddnnf.are_configs_sorted(right.partial_configs.iter().collect()));
+        // debug_assert!(self.ext_ddnnf.are_configs_sorted(right.complete_configs.iter().collect()));
+
         if left.is_empty() {
             return right.clone();
         } else if right.is_empty() {
@@ -31,25 +34,27 @@ impl SampleMerger for AttributeSimilarityMerger<'_> {
         }
 
         let mut new_sample = Sample::new_from_samples(&[left, right]);
-        let candidates = left
-            .iter()
-            .chain(right.iter())
-            .sorted_by_cached_key(|config|
-                FloatOrd::from(self.ext_ddnnf.get_average_objective_fn_val_of_config(config))
-            )
-            .rev();
+        let left_merged_sorted_configs = self.ext_ddnnf.merge_sorted_configs(left.partial_configs.iter().collect(), left.complete_configs.iter().collect());
+        let right_merged_sorted_configs = self.ext_ddnnf.merge_sorted_configs(right.partial_configs.iter().collect(), right.complete_configs.iter().collect());
+        let candidates = self.ext_ddnnf.merge_sorted_configs(left_merged_sorted_configs, right_merged_sorted_configs);
+        // let candidates = left
+        //     .iter()
+        //     .chain(right.iter())
+        //     .sorted_by_cached_key(|config|
+        //         FloatOrd::from(self.ext_ddnnf.get_average_objective_fn_val_of_config(config))
+        //     )
+        //     .rev();
 
         for candidate in candidates {
             if new_sample.is_t_wise_covered(candidate, self.t) {
                 continue;
             }
 
-            if candidate.is_complete() {
-                new_sample.add_complete(candidate.clone());
-            } else {
-                new_sample.add_partial(candidate.clone());
-            }
+            new_sample.add(candidate.clone())
         }
+
+        // debug_assert!(self.ext_ddnnf.are_configs_sorted(new_sample.partial_configs.iter().collect()));
+        // debug_assert!(self.ext_ddnnf.are_configs_sorted(new_sample.complete_configs.iter().collect()));
 
         new_sample
     }
