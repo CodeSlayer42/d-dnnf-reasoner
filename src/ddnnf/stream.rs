@@ -19,6 +19,8 @@ use nom::sequence::{tuple, pair};
 use workctl::WorkQueue;
 
 use crate::{Ddnnf, parser::util::*};
+use crate::ddnnf::anomalies::t_wise_sampling::save_sample_to_file;
+use crate::ddnnf::extended_ddnnf::ExtendedDdnnf;
 use crate::parser::persisting::write_ddnnf;
 
 impl Ddnnf {
@@ -161,6 +163,7 @@ impl Ddnnf {
         let mut values = Vec::new();
         let mut seed = 42;
         let mut limit = None;
+        let mut fitness = Vec::new();
         let mut path = Path::new("");
 
         // go through all possible extra values that can be provided til
@@ -179,6 +182,15 @@ impl Ddnnf {
                 },
                 "v" | "variables" => {
                     values = match get_numbers(&args[param_index..], self.number_of_variables) {
+                        Ok(v) => {
+                            param_index += v.1;
+                            v.0
+                        },
+                        Err(e) => return e,
+                    };
+                },
+                "f" | "fitness" => {
+                    fitness = match get_floats(&args[param_index..]) {
                         Ok(v) => {
                             param_index += v.1;
                             v.0
@@ -325,7 +337,33 @@ impl Ddnnf {
                     Some(limit) => limit,
                     None => 1,
                 };
-                self.sample_t_wise(limit_interpretation).to_string()
+
+                let sample_result = if fitness.is_empty() {
+                    self.sample_t_wise(limit_interpretation)
+                } else if fitness.len() == self.number_of_variables as usize {
+                    let mut ext_ddnnf = ExtendedDdnnf {
+                        ddnnf: self.clone(),
+                        attrs: Default::default(),
+                        objective_fn_vals: Some(fitness),
+                    };
+                    ext_ddnnf.sample_t_wise(limit_interpretation)
+                } else {
+                    return format!("E5 error: Only {} fitness values were provided but d-DNNF contains {} variables.", fitness.len(), self.number_of_variables);
+                };
+
+                let path_str = path.to_str().unwrap();
+                if path_str == "" {
+                    sample_result.to_string()
+                } else {
+                    if !path.is_absolute() {
+                        String::from("E6 error: file path is not absolute, but has to be")
+                    } else {
+                        match save_sample_to_file(&sample_result,  path_str) {
+                            Ok(_) => format!("Computed {}-wise samples and saved the results in {}.", limit_interpretation, path_str),
+                            Err(e) => format!("E6 error: {} while trying to write ddnnf to {}", e, path_str)
+                        }
+                    }
+                }
             }
             other => format!("E2 error: the operation \"{}\" is not supported", other),
         }
@@ -422,6 +460,33 @@ fn get_numbers(params: &[&str], boundary: u32) -> Result<(Vec<i32>, usize), Stri
         return Err(format!("E3 error: not all parameters are within the boundary of {} to {}", -(boundary as i32), boundary as i32));
     }
     Ok((numbers, parsed_str_count))
+}
+
+// parses floats into a vector of f64
+fn get_floats(params: &[&str]) -> Result<(Vec<f64>, usize), String> {
+    let mut floats = Vec::new();
+    let mut parsed_str_count = 0;
+
+    for &param in params.iter() {
+        if param.chars().any(|c| c.is_alphabetic()) {
+            return Ok((floats, parsed_str_count));
+        }
+
+        match param.parse::<f64>() {
+            Ok(number) => floats.push(number),
+            Err(e) => return Err(format!("E3 {}", e))
+        }
+
+        parsed_str_count += 1;
+    }
+
+    if floats.is_empty() {
+        return Err(String::from(
+            "E4 error: option used but there was no value supplied",
+        ));
+    }
+
+    Ok((floats, parsed_str_count))
 }
 
 // spawns a new thread that listens on stdin and delivers its request to the stream message handling

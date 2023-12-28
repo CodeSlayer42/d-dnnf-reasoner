@@ -4,6 +4,8 @@ pub mod t_iterator;
 pub mod sample_merger;
 pub mod sat_wrapper;
 
+pub mod sampling_eval;
+
 
 use std::cmp::min;
 use std::collections::{HashMap, HashSet};
@@ -74,7 +76,7 @@ impl Ddnnf {
 }
 
 impl ExtendedDdnnf {
-    pub fn sample_t_wise(&self, t: usize, optimal_completion: bool) -> SamplingResult {
+    pub fn sample_t_wise(&self, t: usize) -> SamplingResult {
         let sat_solver = SatWrapper::new(&self.ddnnf);
         let and_merger = AttributeZippingMerger {
             t,
@@ -114,11 +116,7 @@ impl ExtendedDdnnf {
                 &mut rng,
             );
 
-            if optimal_completion {
-                complete_partial_configs_optimal(&mut sample, self);
-            } else {
-                complete_partial_configs(&mut sample, root_id, &sat_solver, self.ddnnf.number_of_variables as i32);
-            }
+            complete_partial_configs_optimal(&mut sample, self);
 
             ResultWithSample(sample)
         } else {
@@ -608,7 +606,7 @@ mod test {
         let ext_ddnnf = build_sandwich_ext_ddnnf_with_objective_function_values();
 
         for t in 1..=4 {
-            check_validity_of_sample(ext_ddnnf.sample_t_wise(t, true).get_sample().unwrap(), &ext_ddnnf.ddnnf, t);
+            check_validity_of_sample(ext_ddnnf.sample_t_wise(t).get_sample().unwrap(), &ext_ddnnf.ddnnf, t);
         }
     }
 
