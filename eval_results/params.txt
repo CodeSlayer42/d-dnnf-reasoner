@@ -1,0 +1,11 @@
+	private static final int SEED = 1337;
+	private static final Random RNG = new Random(SEED);
+	private static final int TIMEOUT_SECONDS = 1800;
+	private static final int T = 2;
+	private static final double LOWER_FITNESS_BOUND = -100.0;
+	private static final double UPPER_FITNESS_BOUND = 100.0;
+	private static final int N_FITNESS_RUNS = 5;
+	private static final int N_YASA_RUNS = 5;
+	
+	private static final int N_YASA_WARMUP_ITERS = 200;
+	private static final int YASA_WARMUP_FM_IDX = 11;

@@ -1,0 +1,1037 @@
+Smarch/LLVM.dimacs with 11 features.
+Smarch/X264.dimacs with 16 features.
+Smarch/Dune.dimacs with 17 features.
+Smarch/BerkeleyDBC.dimacs with 18 features.
+Smarch/lrzip.dimacs with 20 features.
+Smarch/HiPAcc.dimacs with 31 features.
+Smarch/JavaGC.dimacs with 39 features.
+Smarch/Polly.dimacs with 40 features.
+Smarch/VP9.dimacs with 42 features.
+Smarch/7z.dimacs with 44 features.
+Smarch/JHipster.dimacs with 45 features.
+featureide_examples/berkeleydb.dimacs with 76 features.
+Smarch/axtls_2_1_4.dimacs with 94 features.
+KConfig/axTLS.dimacs with 96 features.
+Smarch/fiasco_17_10.dimacs with 234 features.
+Smarch/uClibc-ng_1_0_29.dimacs with 269 features.
+KConfig/uClibc.dimacs with 313 features.
+Smarch/toybox_0_7_5.dimacs with 316 features.
+KConfig/uClinux-base.dimacs with 380 features.
+Smarch/toybox.dimacs with 544 features.
+Smarch/axTLS.dimacs with 684 features.
+financial_services/financialServices_2018-05-09.dimacs with 771 features.
+KConfig/busybox-1.18.0.dimacs with 854 features.
+Smarch/busybox_1_28_0.dimacs with 998 features.
+CDL/am31_sim.dimacs with 1178 features.
+KConfig/embtoolkit.dimacs with 1179 features.
+Smarch/ref4955.dimacs with 1218 features.
+Smarch/ecos-icse11.dimacs with 1244 features.
+Smarch/pati.dimacs with 1248 features.
+CDL/p2106.dimacs with 1262 features.
+Smarch/integrator_arm9.dimacs with 1267 features.
+Smarch/olpce2294.dimacs with 1274 features.
+Smarch/adderII.dimacs with 1276 features.
+Smarch/at91sam7sek.dimacs with 1296 features.
+Smarch/se77x9.dimacs with 1319 features.
+Smarch/m5272c3.dimacs with 1323 features.
+Smarch/phycore229x.dimacs with 1360 features.
+Smarch/freebsd-icse11.dimacs with 1396 features.
+CDL/ea2468.dimacs with 1408 features.
+KConfig/uClinux-distribution.dimacs with 1580 features.
+Smarch/fiasco.dimacs with 1638 features.
+Smarch/uClinux.dimacs with 1850 features.
+automotive01/automotive01.dimacs with 2513 features.
+Smarch/busybox-1.18.0.dimacs with 6796 features.
+Smarch/uClinux-config.dimacs with 11254 features.
+automotive02/automotive2_4.dimacs with 18616 features.
+Smarch/embtoolkit.dimacs with 23516 features.
+
+### Starting YASA warm up
+........................................................................................................................................................................................................
+### Finished YASA warm up
+
+### Start sampling for FM Smarch/LLVM.dimacs with 11 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/LLVM.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/LLVM.dimacs in 1 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/LLVM.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/LLVM.dimacs in 2 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/LLVM.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/LLVM.dimacs in 2 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/LLVM.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/LLVM.dimacs in 2 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/LLVM.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/LLVM.dimacs in 2 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/LLVM.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/LLVM.dimacs in 2 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/LLVM.dimacs in 179 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/LLVM.dimacs in 181 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/LLVM.dimacs in 179 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/LLVM.dimacs in 177 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/LLVM.dimacs in 184 ms.
+### Finished sampling for FM Smarch/LLVM.dimacs.
+
+### Start sampling for FM Smarch/X264.dimacs with 16 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/X264.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/X264.dimacs in 4 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/X264.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/X264.dimacs in 3 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/X264.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/X264.dimacs in 2 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/X264.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/X264.dimacs in 3 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/X264.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/X264.dimacs in 2 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/X264.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/X264.dimacs in 2 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/X264.dimacs in 179 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/X264.dimacs in 185 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/X264.dimacs in 183 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/X264.dimacs in 204 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/X264.dimacs in 188 ms.
+### Finished sampling for FM Smarch/X264.dimacs.
+
+### Start sampling for FM Smarch/Dune.dimacs with 17 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/Dune.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/Dune.dimacs in 4 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/Dune.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/Dune.dimacs in 3 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/Dune.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/Dune.dimacs in 5 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/Dune.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/Dune.dimacs in 3 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/Dune.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/Dune.dimacs in 3 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/Dune.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/Dune.dimacs in 3 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/Dune.dimacs in 174 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/Dune.dimacs in 180 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/Dune.dimacs in 175 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/Dune.dimacs in 176 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/Dune.dimacs in 177 ms.
+### Finished sampling for FM Smarch/Dune.dimacs.
+
+### Start sampling for FM Smarch/BerkeleyDBC.dimacs with 18 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/BerkeleyDBC.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/BerkeleyDBC.dimacs in 4 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/BerkeleyDBC.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/BerkeleyDBC.dimacs in 4 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/BerkeleyDBC.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/BerkeleyDBC.dimacs in 3 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/BerkeleyDBC.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/BerkeleyDBC.dimacs in 3 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/BerkeleyDBC.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/BerkeleyDBC.dimacs in 3 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/BerkeleyDBC.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/BerkeleyDBC.dimacs in 4 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/BerkeleyDBC.dimacs in 168 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/BerkeleyDBC.dimacs in 177 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/BerkeleyDBC.dimacs in 171 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/BerkeleyDBC.dimacs in 174 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/BerkeleyDBC.dimacs in 167 ms.
+### Finished sampling for FM Smarch/BerkeleyDBC.dimacs.
+
+### Start sampling for FM Smarch/lrzip.dimacs with 20 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/lrzip.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/lrzip.dimacs in 5 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/lrzip.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/lrzip.dimacs in 3 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/lrzip.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/lrzip.dimacs in 4 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/lrzip.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/lrzip.dimacs in 3 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/lrzip.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/lrzip.dimacs in 3 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/lrzip.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/lrzip.dimacs in 4 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/lrzip.dimacs in 32 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/lrzip.dimacs in 49 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/lrzip.dimacs in 56 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/lrzip.dimacs in 57 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/lrzip.dimacs in 57 ms.
+### Finished sampling for FM Smarch/lrzip.dimacs.
+
+### Start sampling for FM Smarch/HiPAcc.dimacs with 31 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/HiPAcc.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/HiPAcc.dimacs in 10 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/HiPAcc.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/HiPAcc.dimacs in 9 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/HiPAcc.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/HiPAcc.dimacs in 8 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/HiPAcc.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/HiPAcc.dimacs in 8 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/HiPAcc.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/HiPAcc.dimacs in 7 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/HiPAcc.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/HiPAcc.dimacs in 7 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/HiPAcc.dimacs in 351 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/HiPAcc.dimacs in 250 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/HiPAcc.dimacs in 252 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/HiPAcc.dimacs in 276 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/HiPAcc.dimacs in 235 ms.
+### Finished sampling for FM Smarch/HiPAcc.dimacs.
+
+### Start sampling for FM Smarch/JavaGC.dimacs with 39 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/JavaGC.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/JavaGC.dimacs in 7 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/JavaGC.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/JavaGC.dimacs in 8 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/JavaGC.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/JavaGC.dimacs in 8 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/JavaGC.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/JavaGC.dimacs in 8 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/JavaGC.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/JavaGC.dimacs in 7 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/JavaGC.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/JavaGC.dimacs in 7 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/JavaGC.dimacs in 187 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/JavaGC.dimacs in 192 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/JavaGC.dimacs in 197 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/JavaGC.dimacs in 194 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/JavaGC.dimacs in 192 ms.
+### Finished sampling for FM Smarch/JavaGC.dimacs.
+
+### Start sampling for FM Smarch/Polly.dimacs with 40 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/Polly.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/Polly.dimacs in 8 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/Polly.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/Polly.dimacs in 7 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/Polly.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/Polly.dimacs in 9 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/Polly.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/Polly.dimacs in 7 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/Polly.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/Polly.dimacs in 6 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/Polly.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/Polly.dimacs in 7 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/Polly.dimacs in 185 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/Polly.dimacs in 187 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/Polly.dimacs in 187 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/Polly.dimacs in 187 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/Polly.dimacs in 191 ms.
+### Finished sampling for FM Smarch/Polly.dimacs.
+
+### Start sampling for FM Smarch/VP9.dimacs with 42 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/VP9.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/VP9.dimacs in 8 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/VP9.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/VP9.dimacs in 9 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/VP9.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/VP9.dimacs in 7 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/VP9.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/VP9.dimacs in 7 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/VP9.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/VP9.dimacs in 7 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/VP9.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/VP9.dimacs in 6 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/VP9.dimacs in 194 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/VP9.dimacs in 197 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/VP9.dimacs in 198 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/VP9.dimacs in 194 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/VP9.dimacs in 196 ms.
+### Finished sampling for FM Smarch/VP9.dimacs.
+
+### Start sampling for FM Smarch/7z.dimacs with 44 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/7z.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/7z.dimacs in 28 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/7z.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/7z.dimacs in 26 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/7z.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/7z.dimacs in 27 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/7z.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/7z.dimacs in 24 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/7z.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/7z.dimacs in 24 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/7z.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/7z.dimacs in 20 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/7z.dimacs in 307 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/7z.dimacs in 235 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/7z.dimacs in 222 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/7z.dimacs in 225 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/7z.dimacs in 227 ms.
+### Finished sampling for FM Smarch/7z.dimacs.
+
+### Start sampling for FM Smarch/JHipster.dimacs with 45 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/JHipster.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/JHipster.dimacs in 13 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/JHipster.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/JHipster.dimacs in 13 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/JHipster.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/JHipster.dimacs in 10 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/JHipster.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/JHipster.dimacs in 10 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/JHipster.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/JHipster.dimacs in 10 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/JHipster.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/JHipster.dimacs in 9 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/JHipster.dimacs in 232 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/JHipster.dimacs in 252 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/JHipster.dimacs in 231 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/JHipster.dimacs in 317 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/JHipster.dimacs in 300 ms.
+### Finished sampling for FM Smarch/JHipster.dimacs.
+
+### Start sampling for FM featureide_examples/berkeleydb.dimacs with 76 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/featureide_examples/berkeleydb.dimacs/sample.txt.
+Sucessfully generated sample for feature model featureide_examples/berkeleydb.dimacs in 22 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/featureide_examples/berkeleydb.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model featureide_examples/berkeleydb.dimacs in 22 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/featureide_examples/berkeleydb.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model featureide_examples/berkeleydb.dimacs in 20 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/featureide_examples/berkeleydb.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model featureide_examples/berkeleydb.dimacs in 19 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/featureide_examples/berkeleydb.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model featureide_examples/berkeleydb.dimacs in 20 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/featureide_examples/berkeleydb.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model featureide_examples/berkeleydb.dimacs in 19 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model featureide_examples/berkeleydb.dimacs in 540 ms.
+Sucessfully generated 2. sample with YASA for feature model featureide_examples/berkeleydb.dimacs in 392 ms.
+Sucessfully generated 3. sample with YASA for feature model featureide_examples/berkeleydb.dimacs in 390 ms.
+Sucessfully generated 4. sample with YASA for feature model featureide_examples/berkeleydb.dimacs in 384 ms.
+Sucessfully generated 5. sample with YASA for feature model featureide_examples/berkeleydb.dimacs in 383 ms.
+### Finished sampling for FM featureide_examples/berkeleydb.dimacs.
+
+### Start sampling for FM Smarch/axtls_2_1_4.dimacs with 94 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/axtls_2_1_4.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/axtls_2_1_4.dimacs in 32 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/axtls_2_1_4.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/axtls_2_1_4.dimacs in 27 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/axtls_2_1_4.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/axtls_2_1_4.dimacs in 26 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/axtls_2_1_4.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/axtls_2_1_4.dimacs in 31 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/axtls_2_1_4.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/axtls_2_1_4.dimacs in 28 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/axtls_2_1_4.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/axtls_2_1_4.dimacs in 29 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/axtls_2_1_4.dimacs in 588 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/axtls_2_1_4.dimacs in 449 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/axtls_2_1_4.dimacs in 443 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/axtls_2_1_4.dimacs in 431 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/axtls_2_1_4.dimacs in 463 ms.
+### Finished sampling for FM Smarch/axtls_2_1_4.dimacs.
+
+### Start sampling for FM KConfig/axTLS.dimacs with 96 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/KConfig/axTLS.dimacs/sample.txt.
+Sucessfully generated sample for feature model KConfig/axTLS.dimacs in 12 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/axTLS.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/axTLS.dimacs in 11 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/axTLS.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/axTLS.dimacs in 11 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/axTLS.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/axTLS.dimacs in 11 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/axTLS.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/axTLS.dimacs in 9 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/axTLS.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/axTLS.dimacs in 9 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model KConfig/axTLS.dimacs in 351 ms.
+Sucessfully generated 2. sample with YASA for feature model KConfig/axTLS.dimacs in 366 ms.
+Sucessfully generated 3. sample with YASA for feature model KConfig/axTLS.dimacs in 357 ms.
+Sucessfully generated 4. sample with YASA for feature model KConfig/axTLS.dimacs in 357 ms.
+Sucessfully generated 5. sample with YASA for feature model KConfig/axTLS.dimacs in 357 ms.
+### Finished sampling for FM KConfig/axTLS.dimacs.
+
+### Start sampling for FM Smarch/fiasco_17_10.dimacs with 234 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/fiasco_17_10.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/fiasco_17_10.dimacs in 903 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/fiasco_17_10.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/fiasco_17_10.dimacs in 886 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/fiasco_17_10.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/fiasco_17_10.dimacs in 807 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/fiasco_17_10.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/fiasco_17_10.dimacs in 802 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/fiasco_17_10.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/fiasco_17_10.dimacs in 835 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/fiasco_17_10.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/fiasco_17_10.dimacs in 844 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/fiasco_17_10.dimacs in 3721 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/fiasco_17_10.dimacs in 3451 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/fiasco_17_10.dimacs in 3454 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/fiasco_17_10.dimacs in 3461 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/fiasco_17_10.dimacs in 3658 ms.
+### Finished sampling for FM Smarch/fiasco_17_10.dimacs.
+
+### Start sampling for FM Smarch/uClibc-ng_1_0_29.dimacs with 269 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/uClibc-ng_1_0_29.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClibc-ng_1_0_29.dimacs in 3855 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClibc-ng_1_0_29.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClibc-ng_1_0_29.dimacs in 2541 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClibc-ng_1_0_29.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClibc-ng_1_0_29.dimacs in 2192 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClibc-ng_1_0_29.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClibc-ng_1_0_29.dimacs in 2574 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClibc-ng_1_0_29.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClibc-ng_1_0_29.dimacs in 2297 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClibc-ng_1_0_29.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClibc-ng_1_0_29.dimacs in 2849 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/uClibc-ng_1_0_29.dimacs in 5237 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/uClibc-ng_1_0_29.dimacs in 5427 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/uClibc-ng_1_0_29.dimacs in 5316 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/uClibc-ng_1_0_29.dimacs in 5337 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/uClibc-ng_1_0_29.dimacs in 5280 ms.
+### Finished sampling for FM Smarch/uClibc-ng_1_0_29.dimacs.
+
+### Start sampling for FM KConfig/uClibc.dimacs with 313 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/KConfig/uClibc.dimacs/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClibc.dimacs in 4782 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClibc.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClibc.dimacs in 3603 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClibc.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClibc.dimacs in 4276 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClibc.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClibc.dimacs in 3091 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClibc.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClibc.dimacs in 3730 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClibc.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClibc.dimacs in 3777 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model KConfig/uClibc.dimacs in 8414 ms.
+Sucessfully generated 2. sample with YASA for feature model KConfig/uClibc.dimacs in 8359 ms.
+Sucessfully generated 3. sample with YASA for feature model KConfig/uClibc.dimacs in 8456 ms.
+Sucessfully generated 4. sample with YASA for feature model KConfig/uClibc.dimacs in 8237 ms.
+Sucessfully generated 5. sample with YASA for feature model KConfig/uClibc.dimacs in 8134 ms.
+### Finished sampling for FM KConfig/uClibc.dimacs.
+
+### Start sampling for FM Smarch/toybox_0_7_5.dimacs with 316 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/toybox_0_7_5.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/toybox_0_7_5.dimacs in 156 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/toybox_0_7_5.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/toybox_0_7_5.dimacs in 154 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/toybox_0_7_5.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/toybox_0_7_5.dimacs in 139 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/toybox_0_7_5.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/toybox_0_7_5.dimacs in 128 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/toybox_0_7_5.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/toybox_0_7_5.dimacs in 141 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/toybox_0_7_5.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/toybox_0_7_5.dimacs in 146 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/toybox_0_7_5.dimacs in 2012 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/toybox_0_7_5.dimacs in 1824 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/toybox_0_7_5.dimacs in 1895 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/toybox_0_7_5.dimacs in 1790 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/toybox_0_7_5.dimacs in 1891 ms.
+### Finished sampling for FM Smarch/toybox_0_7_5.dimacs.
+
+### Start sampling for FM KConfig/uClinux-base.dimacs with 380 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/KConfig/uClinux-base.dimacs/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClinux-base.dimacs in 28015 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClinux-base.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClinux-base.dimacs in 20396 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClinux-base.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClinux-base.dimacs in 20749 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClinux-base.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClinux-base.dimacs in 20674 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClinux-base.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClinux-base.dimacs in 22048 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClinux-base.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClinux-base.dimacs in 21358 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model KConfig/uClinux-base.dimacs in 26256 ms.
+Sucessfully generated 2. sample with YASA for feature model KConfig/uClinux-base.dimacs in 26173 ms.
+Sucessfully generated 3. sample with YASA for feature model KConfig/uClinux-base.dimacs in 23904 ms.
+Sucessfully generated 4. sample with YASA for feature model KConfig/uClinux-base.dimacs in 24138 ms.
+Sucessfully generated 5. sample with YASA for feature model KConfig/uClinux-base.dimacs in 24962 ms.
+### Finished sampling for FM KConfig/uClinux-base.dimacs.
+
+### Start sampling for FM Smarch/toybox.dimacs with 544 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/toybox.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/toybox.dimacs in 136 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/toybox.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/toybox.dimacs in 89 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/toybox.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/toybox.dimacs in 97 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/toybox.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/toybox.dimacs in 86 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/toybox.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/toybox.dimacs in 89 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/toybox.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/toybox.dimacs in 76 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/toybox.dimacs in 1042 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/toybox.dimacs in 805 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/toybox.dimacs in 805 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/toybox.dimacs in 814 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/toybox.dimacs in 808 ms.
+### Finished sampling for FM Smarch/toybox.dimacs.
+
+### Start sampling for FM Smarch/axTLS.dimacs with 684 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/axTLS.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/axTLS.dimacs in 438 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/axTLS.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/axTLS.dimacs in 414 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/axTLS.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/axTLS.dimacs in 333 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/axTLS.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/axTLS.dimacs in 514 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/axTLS.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/axTLS.dimacs in 363 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/axTLS.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/axTLS.dimacs in 344 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/axTLS.dimacs in 3176 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/axTLS.dimacs in 3268 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/axTLS.dimacs in 3301 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/axTLS.dimacs in 3302 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/axTLS.dimacs in 3322 ms.
+### Finished sampling for FM Smarch/axTLS.dimacs.
+
+### Start sampling for FM financial_services/financialServices_2018-05-09.dimacs with 771 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/financial_services/financialServices_2018-05-09.dimacs/sample.txt.
+Sucessfully generated sample for feature model financial_services/financialServices_2018-05-09.dimacs in 390877 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/financial_services/financialServices_2018-05-09.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model financial_services/financialServices_2018-05-09.dimacs in 480131 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/financial_services/financialServices_2018-05-09.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model financial_services/financialServices_2018-05-09.dimacs in 435113 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/financial_services/financialServices_2018-05-09.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model financial_services/financialServices_2018-05-09.dimacs in 484489 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/financial_services/financialServices_2018-05-09.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model financial_services/financialServices_2018-05-09.dimacs in 467718 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/financial_services/financialServices_2018-05-09.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model financial_services/financialServices_2018-05-09.dimacs in 525637 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model financial_services/financialServices_2018-05-09.dimacs in 538839 ms.
+Sucessfully generated 2. sample with YASA for feature model financial_services/financialServices_2018-05-09.dimacs in 525444 ms.
+Sucessfully generated 3. sample with YASA for feature model financial_services/financialServices_2018-05-09.dimacs in 519810 ms.
+Sucessfully generated 4. sample with YASA for feature model financial_services/financialServices_2018-05-09.dimacs in 526631 ms.
+Sucessfully generated 5. sample with YASA for feature model financial_services/financialServices_2018-05-09.dimacs in 495352 ms.
+### Finished sampling for FM financial_services/financialServices_2018-05-09.dimacs.
+
+### Start sampling for FM KConfig/busybox-1.18.0.dimacs with 854 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/KConfig/busybox-1.18.0.dimacs/sample.txt.
+Sucessfully generated sample for feature model KConfig/busybox-1.18.0.dimacs in 638 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/busybox-1.18.0.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/busybox-1.18.0.dimacs in 769 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/busybox-1.18.0.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/busybox-1.18.0.dimacs in 768 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/busybox-1.18.0.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/busybox-1.18.0.dimacs in 709 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/busybox-1.18.0.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/busybox-1.18.0.dimacs in 743 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/busybox-1.18.0.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/busybox-1.18.0.dimacs in 724 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model KConfig/busybox-1.18.0.dimacs in 10058 ms.
+Sucessfully generated 2. sample with YASA for feature model KConfig/busybox-1.18.0.dimacs in 9924 ms.
+Sucessfully generated 3. sample with YASA for feature model KConfig/busybox-1.18.0.dimacs in 10244 ms.
+Sucessfully generated 4. sample with YASA for feature model KConfig/busybox-1.18.0.dimacs in 9930 ms.
+Sucessfully generated 5. sample with YASA for feature model KConfig/busybox-1.18.0.dimacs in 9911 ms.
+### Finished sampling for FM KConfig/busybox-1.18.0.dimacs.
+
+### Start sampling for FM Smarch/busybox_1_28_0.dimacs with 998 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/busybox_1_28_0.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/busybox_1_28_0.dimacs in 7930 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/busybox_1_28_0.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/busybox_1_28_0.dimacs in 14676 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/busybox_1_28_0.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/busybox_1_28_0.dimacs in 13695 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/busybox_1_28_0.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/busybox_1_28_0.dimacs in 15756 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/busybox_1_28_0.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/busybox_1_28_0.dimacs in 15652 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/busybox_1_28_0.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/busybox_1_28_0.dimacs in 15057 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/busybox_1_28_0.dimacs in 18866 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/busybox_1_28_0.dimacs in 19798 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/busybox_1_28_0.dimacs in 19102 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/busybox_1_28_0.dimacs in 18742 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/busybox_1_28_0.dimacs in 19234 ms.
+### Finished sampling for FM Smarch/busybox_1_28_0.dimacs.
+
+### Start sampling for FM CDL/am31_sim.dimacs with 1178 features:
+Start original algorithm:
+Timeout for FM CDL/am31_sim.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM CDL/am31_sim.dimacs after 1800 seconds.
+Timeout for FM CDL/am31_sim.dimacs after 1800 seconds.
+Timeout for FM CDL/am31_sim.dimacs after 1800 seconds.
+Timeout for FM CDL/am31_sim.dimacs after 1800 seconds.
+Timeout for FM CDL/am31_sim.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model CDL/am31_sim.dimacs in 20329 ms.
+Sucessfully generated 2. sample with YASA for feature model CDL/am31_sim.dimacs in 20983 ms.
+Sucessfully generated 3. sample with YASA for feature model CDL/am31_sim.dimacs in 21022 ms.
+Sucessfully generated 4. sample with YASA for feature model CDL/am31_sim.dimacs in 20695 ms.
+Sucessfully generated 5. sample with YASA for feature model CDL/am31_sim.dimacs in 20358 ms.
+### Finished sampling for FM CDL/am31_sim.dimacs.
+
+### Start sampling for FM KConfig/embtoolkit.dimacs with 1179 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/KConfig/embtoolkit.dimacs/sample.txt.
+Sucessfully generated sample for feature model KConfig/embtoolkit.dimacs in 86104 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/embtoolkit.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/embtoolkit.dimacs in 64268 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/embtoolkit.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/embtoolkit.dimacs in 66975 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/embtoolkit.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/embtoolkit.dimacs in 62870 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/embtoolkit.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/embtoolkit.dimacs in 68783 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/embtoolkit.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/embtoolkit.dimacs in 62751 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model KConfig/embtoolkit.dimacs in 276152 ms.
+Sucessfully generated 2. sample with YASA for feature model KConfig/embtoolkit.dimacs in 322162 ms.
+Sucessfully generated 3. sample with YASA for feature model KConfig/embtoolkit.dimacs in 331757 ms.
+Sucessfully generated 4. sample with YASA for feature model KConfig/embtoolkit.dimacs in 330213 ms.
+Sucessfully generated 5. sample with YASA for feature model KConfig/embtoolkit.dimacs in 323349 ms.
+### Finished sampling for FM KConfig/embtoolkit.dimacs.
+
+### Start sampling for FM Smarch/ref4955.dimacs with 1218 features:
+Start original algorithm:
+Timeout for FM Smarch/ref4955.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM Smarch/ref4955.dimacs after 1800 seconds.
+Timeout for FM Smarch/ref4955.dimacs after 1800 seconds.
+Timeout for FM Smarch/ref4955.dimacs after 1800 seconds.
+Timeout for FM Smarch/ref4955.dimacs after 1800 seconds.
+Timeout for FM Smarch/ref4955.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/ref4955.dimacs in 24974 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/ref4955.dimacs in 24824 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/ref4955.dimacs in 24783 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/ref4955.dimacs in 24161 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/ref4955.dimacs in 24639 ms.
+### Finished sampling for FM Smarch/ref4955.dimacs.
+
+### Start sampling for FM Smarch/ecos-icse11.dimacs with 1244 features:
+Start original algorithm:
+Timeout for FM Smarch/ecos-icse11.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM Smarch/ecos-icse11.dimacs after 1800 seconds.
+Timeout for FM Smarch/ecos-icse11.dimacs after 1800 seconds.
+Timeout for FM Smarch/ecos-icse11.dimacs after 1800 seconds.
+Timeout for FM Smarch/ecos-icse11.dimacs after 1800 seconds.
+Timeout for FM Smarch/ecos-icse11.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/ecos-icse11.dimacs in 26228 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/ecos-icse11.dimacs in 24938 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/ecos-icse11.dimacs in 25475 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/ecos-icse11.dimacs in 25804 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/ecos-icse11.dimacs in 25928 ms.
+### Finished sampling for FM Smarch/ecos-icse11.dimacs.
+
+### Start sampling for FM Smarch/pati.dimacs with 1248 features:
+Start original algorithm:
+Timeout for FM Smarch/pati.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM Smarch/pati.dimacs after 1800 seconds.
+Timeout for FM Smarch/pati.dimacs after 1800 seconds.
+Timeout for FM Smarch/pati.dimacs after 1800 seconds.
+Timeout for FM Smarch/pati.dimacs after 1800 seconds.
+Timeout for FM Smarch/pati.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/pati.dimacs in 25868 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/pati.dimacs in 25799 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/pati.dimacs in 25932 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/pati.dimacs in 25956 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/pati.dimacs in 25469 ms.
+### Finished sampling for FM Smarch/pati.dimacs.
+
+### Start sampling for FM CDL/p2106.dimacs with 1262 features:
+Start original algorithm:
+Timeout for FM CDL/p2106.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM CDL/p2106.dimacs after 1800 seconds.
+Timeout for FM CDL/p2106.dimacs after 1800 seconds.
+Timeout for FM CDL/p2106.dimacs after 1800 seconds.
+Timeout for FM CDL/p2106.dimacs after 1800 seconds.
+Timeout for FM CDL/p2106.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model CDL/p2106.dimacs in 26502 ms.
+Sucessfully generated 2. sample with YASA for feature model CDL/p2106.dimacs in 25469 ms.
+Sucessfully generated 3. sample with YASA for feature model CDL/p2106.dimacs in 25212 ms.
+Sucessfully generated 4. sample with YASA for feature model CDL/p2106.dimacs in 25719 ms.
+Sucessfully generated 5. sample with YASA for feature model CDL/p2106.dimacs in 25038 ms.
+### Finished sampling for FM CDL/p2106.dimacs.
+
+### Start sampling for FM Smarch/integrator_arm9.dimacs with 1267 features:
+Start original algorithm:
+Timeout for FM Smarch/integrator_arm9.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM Smarch/integrator_arm9.dimacs after 1800 seconds.
+Timeout for FM Smarch/integrator_arm9.dimacs after 1800 seconds.
+Timeout for FM Smarch/integrator_arm9.dimacs after 1800 seconds.
+Timeout for FM Smarch/integrator_arm9.dimacs after 1800 seconds.
+Timeout for FM Smarch/integrator_arm9.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/integrator_arm9.dimacs in 31567 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/integrator_arm9.dimacs in 30515 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/integrator_arm9.dimacs in 31854 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/integrator_arm9.dimacs in 30843 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/integrator_arm9.dimacs in 30356 ms.
+### Finished sampling for FM Smarch/integrator_arm9.dimacs.
+
+### Start sampling for FM Smarch/olpce2294.dimacs with 1274 features:
+Start original algorithm:
+Timeout for FM Smarch/olpce2294.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM Smarch/olpce2294.dimacs after 1800 seconds.
+Timeout for FM Smarch/olpce2294.dimacs after 1800 seconds.
+Timeout for FM Smarch/olpce2294.dimacs after 1800 seconds.
+Timeout for FM Smarch/olpce2294.dimacs after 1800 seconds.
+Timeout for FM Smarch/olpce2294.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/olpce2294.dimacs in 27526 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/olpce2294.dimacs in 26488 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/olpce2294.dimacs in 26466 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/olpce2294.dimacs in 26647 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/olpce2294.dimacs in 26558 ms.
+### Finished sampling for FM Smarch/olpce2294.dimacs.
+
+### Start sampling for FM Smarch/adderII.dimacs with 1276 features:
+Start original algorithm:
+Timeout for FM Smarch/adderII.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM Smarch/adderII.dimacs after 1800 seconds.
+Timeout for FM Smarch/adderII.dimacs after 1800 seconds.
+Timeout for FM Smarch/adderII.dimacs after 1800 seconds.
+Timeout for FM Smarch/adderII.dimacs after 1800 seconds.
+Timeout for FM Smarch/adderII.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/adderII.dimacs in 27640 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/adderII.dimacs in 28072 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/adderII.dimacs in 27566 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/adderII.dimacs in 26659 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/adderII.dimacs in 25834 ms.
+### Finished sampling for FM Smarch/adderII.dimacs.
+
+### Start sampling for FM Smarch/at91sam7sek.dimacs with 1296 features:
+Start original algorithm:
+Timeout for FM Smarch/at91sam7sek.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM Smarch/at91sam7sek.dimacs after 1800 seconds.
+Timeout for FM Smarch/at91sam7sek.dimacs after 1800 seconds.
+Timeout for FM Smarch/at91sam7sek.dimacs after 1800 seconds.
+Timeout for FM Smarch/at91sam7sek.dimacs after 1800 seconds.
+Timeout for FM Smarch/at91sam7sek.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/at91sam7sek.dimacs in 26586 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/at91sam7sek.dimacs in 26885 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/at91sam7sek.dimacs in 26880 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/at91sam7sek.dimacs in 26931 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/at91sam7sek.dimacs in 25922 ms.
+### Finished sampling for FM Smarch/at91sam7sek.dimacs.
+
+### Start sampling for FM Smarch/se77x9.dimacs with 1319 features:
+Start original algorithm:
+Timeout for FM Smarch/se77x9.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM Smarch/se77x9.dimacs after 1800 seconds.
+Timeout for FM Smarch/se77x9.dimacs after 1800 seconds.
+Timeout for FM Smarch/se77x9.dimacs after 1800 seconds.
+Timeout for FM Smarch/se77x9.dimacs after 1800 seconds.
+Timeout for FM Smarch/se77x9.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/se77x9.dimacs in 33676 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/se77x9.dimacs in 31472 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/se77x9.dimacs in 31455 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/se77x9.dimacs in 31482 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/se77x9.dimacs in 31359 ms.
+### Finished sampling for FM Smarch/se77x9.dimacs.
+
+### Start sampling for FM Smarch/m5272c3.dimacs with 1323 features:
+Start original algorithm:
+Timeout for FM Smarch/m5272c3.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM Smarch/m5272c3.dimacs after 1800 seconds.
+Timeout for FM Smarch/m5272c3.dimacs after 1800 seconds.
+Timeout for FM Smarch/m5272c3.dimacs after 1800 seconds.
+Timeout for FM Smarch/m5272c3.dimacs after 1800 seconds.
+Timeout for FM Smarch/m5272c3.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/m5272c3.dimacs in 29131 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/m5272c3.dimacs in 28467 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/m5272c3.dimacs in 28727 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/m5272c3.dimacs in 29221 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/m5272c3.dimacs in 28403 ms.
+### Finished sampling for FM Smarch/m5272c3.dimacs.
+
+### Start sampling for FM Smarch/phycore229x.dimacs with 1360 features:
+Start original algorithm:
+Timeout for FM Smarch/phycore229x.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM Smarch/phycore229x.dimacs after 1800 seconds.
+Timeout for FM Smarch/phycore229x.dimacs after 1800 seconds.
+Timeout for FM Smarch/phycore229x.dimacs after 1800 seconds.
+Timeout for FM Smarch/phycore229x.dimacs after 1800 seconds.
+Timeout for FM Smarch/phycore229x.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/phycore229x.dimacs in 28824 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/phycore229x.dimacs in 29355 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/phycore229x.dimacs in 28859 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/phycore229x.dimacs in 28112 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/phycore229x.dimacs in 29054 ms.
+### Finished sampling for FM Smarch/phycore229x.dimacs.
+
+### Start sampling for FM Smarch/freebsd-icse11.dimacs with 1396 features:
+Start original algorithm:
+Timeout for FM Smarch/freebsd-icse11.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM Smarch/freebsd-icse11.dimacs after 1800 seconds.
+Timeout for FM Smarch/freebsd-icse11.dimacs after 1800 seconds.
+Timeout for FM Smarch/freebsd-icse11.dimacs after 1800 seconds.
+Timeout for FM Smarch/freebsd-icse11.dimacs after 1800 seconds.
+Timeout for FM Smarch/freebsd-icse11.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/freebsd-icse11.dimacs in 99414 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/freebsd-icse11.dimacs in 99722 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/freebsd-icse11.dimacs in 98890 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/freebsd-icse11.dimacs in 101075 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/freebsd-icse11.dimacs in 90911 ms.
+### Finished sampling for FM Smarch/freebsd-icse11.dimacs.
+
+### Start sampling for FM CDL/ea2468.dimacs with 1408 features:
+Start original algorithm:
+Timeout for FM CDL/ea2468.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM CDL/ea2468.dimacs after 1800 seconds.
+Timeout for FM CDL/ea2468.dimacs after 1800 seconds.
+Timeout for FM CDL/ea2468.dimacs after 1800 seconds.
+Timeout for FM CDL/ea2468.dimacs after 1800 seconds.
+Timeout for FM CDL/ea2468.dimacs after 1800 seconds.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model CDL/ea2468.dimacs in 28899 ms.
+Sucessfully generated 2. sample with YASA for feature model CDL/ea2468.dimacs in 28664 ms.
+Sucessfully generated 3. sample with YASA for feature model CDL/ea2468.dimacs in 28035 ms.
+Sucessfully generated 4. sample with YASA for feature model CDL/ea2468.dimacs in 28195 ms.
+Sucessfully generated 5. sample with YASA for feature model CDL/ea2468.dimacs in 28625 ms.
+### Finished sampling for FM CDL/ea2468.dimacs.
+
+### Start sampling for FM KConfig/uClinux-distribution.dimacs with 1580 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/KConfig/uClinux-distribution.dimacs/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClinux-distribution.dimacs in 5147 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClinux-distribution.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClinux-distribution.dimacs in 3616 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClinux-distribution.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClinux-distribution.dimacs in 4298 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClinux-distribution.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClinux-distribution.dimacs in 3376 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClinux-distribution.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClinux-distribution.dimacs in 3847 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/KConfig/uClinux-distribution.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model KConfig/uClinux-distribution.dimacs in 3906 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model KConfig/uClinux-distribution.dimacs in 40564 ms.
+Sucessfully generated 2. sample with YASA for feature model KConfig/uClinux-distribution.dimacs in 39140 ms.
+Sucessfully generated 3. sample with YASA for feature model KConfig/uClinux-distribution.dimacs in 39031 ms.
+Sucessfully generated 4. sample with YASA for feature model KConfig/uClinux-distribution.dimacs in 40061 ms.
+Sucessfully generated 5. sample with YASA for feature model KConfig/uClinux-distribution.dimacs in 40630 ms.
+### Finished sampling for FM KConfig/uClinux-distribution.dimacs.
+
+### Start sampling for FM Smarch/fiasco.dimacs with 1638 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/fiasco.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/fiasco.dimacs in 8480 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/fiasco.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/fiasco.dimacs in 5518 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/fiasco.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/fiasco.dimacs in 4747 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/fiasco.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/fiasco.dimacs in 5834 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/fiasco.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/fiasco.dimacs in 7257 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/fiasco.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/fiasco.dimacs in 4530 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/fiasco.dimacs in 84050 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/fiasco.dimacs in 83369 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/fiasco.dimacs in 82842 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/fiasco.dimacs in 85387 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/fiasco.dimacs in 87048 ms.
+### Finished sampling for FM Smarch/fiasco.dimacs.
+
+### Start sampling for FM Smarch/uClinux.dimacs with 1850 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/uClinux.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClinux.dimacs in 1892 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClinux.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClinux.dimacs in 1165 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClinux.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClinux.dimacs in 899 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClinux.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClinux.dimacs in 836 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClinux.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClinux.dimacs in 1217 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClinux.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClinux.dimacs in 1204 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/uClinux.dimacs in 7281 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/uClinux.dimacs in 7141 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/uClinux.dimacs in 6856 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/uClinux.dimacs in 6948 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/uClinux.dimacs in 6996 ms.
+### Finished sampling for FM Smarch/uClinux.dimacs.
+
+### Start sampling for FM automotive01/automotive01.dimacs with 2513 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/automotive01/automotive01.dimacs/sample.txt.
+Sucessfully generated sample for feature model automotive01/automotive01.dimacs in 831426 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/automotive01/automotive01.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model automotive01/automotive01.dimacs in 1187099 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/automotive01/automotive01.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model automotive01/automotive01.dimacs in 1180855 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/automotive01/automotive01.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model automotive01/automotive01.dimacs in 1156743 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/automotive01/automotive01.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model automotive01/automotive01.dimacs in 1259317 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/automotive01/automotive01.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model automotive01/automotive01.dimacs in 1259668 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model automotive01/automotive01.dimacs in 591777 ms.
+Sucessfully generated 2. sample with YASA for feature model automotive01/automotive01.dimacs in 637869 ms.
+Sucessfully generated 3. sample with YASA for feature model automotive01/automotive01.dimacs in 520081 ms.
+Sucessfully generated 4. sample with YASA for feature model automotive01/automotive01.dimacs in 595106 ms.
+Sucessfully generated 5. sample with YASA for feature model automotive01/automotive01.dimacs in 555525 ms.
+### Finished sampling for FM automotive01/automotive01.dimacs.
+
+### Start sampling for FM Smarch/busybox-1.18.0.dimacs with 6796 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/busybox-1.18.0.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/busybox-1.18.0.dimacs in 38183 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/busybox-1.18.0.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/busybox-1.18.0.dimacs in 34655 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/busybox-1.18.0.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/busybox-1.18.0.dimacs in 34578 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/busybox-1.18.0.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/busybox-1.18.0.dimacs in 33350 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/busybox-1.18.0.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/busybox-1.18.0.dimacs in 35276 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/busybox-1.18.0.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/busybox-1.18.0.dimacs in 32438 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/busybox-1.18.0.dimacs in 155856 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/busybox-1.18.0.dimacs in 144374 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/busybox-1.18.0.dimacs in 144463 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/busybox-1.18.0.dimacs in 140018 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/busybox-1.18.0.dimacs in 151262 ms.
+### Finished sampling for FM Smarch/busybox-1.18.0.dimacs.
+
+### Start sampling for FM Smarch/uClinux-config.dimacs with 11254 features:
+Start original algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/original/Smarch/uClinux-config.dimacs/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClinux-config.dimacs in 275641 ms.
+Start adapted algorithm:
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClinux-config.dimacs/fitness2.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClinux-config.dimacs in 114058 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClinux-config.dimacs/fitness3.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClinux-config.dimacs in 111922 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClinux-config.dimacs/fitness1.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClinux-config.dimacs in 111342 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClinux-config.dimacs/fitness4.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClinux-config.dimacs in 111624 ms.
+Computed 2-wise samples and saved the results in /home/jonathan/eval/results/adapted/Smarch/uClinux-config.dimacs/fitness5.txt/sample.txt.
+Sucessfully generated sample for feature model Smarch/uClinux-config.dimacs in 105415 ms.
+Start YASA algorithm:
+Sucessfully generated 1. sample with YASA for feature model Smarch/uClinux-config.dimacs in 639545 ms.
+Sucessfully generated 2. sample with YASA for feature model Smarch/uClinux-config.dimacs in 601961 ms.
+Sucessfully generated 3. sample with YASA for feature model Smarch/uClinux-config.dimacs in 641725 ms.
+Sucessfully generated 4. sample with YASA for feature model Smarch/uClinux-config.dimacs in 600091 ms.
+Sucessfully generated 5. sample with YASA for feature model Smarch/uClinux-config.dimacs in 618906 ms.
+### Finished sampling for FM Smarch/uClinux-config.dimacs.
+
+### Start sampling for FM automotive02/automotive2_4.dimacs with 18616 features:
+Start original algorithm:
+Timeout for FM automotive02/automotive2_4.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM automotive02/automotive2_4.dimacs after 1800 seconds.
+Timeout for FM automotive02/automotive2_4.dimacs after 1800 seconds.
+Timeout for FM automotive02/automotive2_4.dimacs after 1800 seconds.
+Timeout for FM automotive02/automotive2_4.dimacs after 1800 seconds.
+Timeout for FM automotive02/automotive2_4.dimacs after 1800 seconds.
+Start YASA algorithm:
+Timeout for FM automotive02/automotive2_4.dimacs after 1800 seconds on 1. run.
+Timeout for FM automotive02/automotive2_4.dimacs after 1800 seconds on 2. run.
+Timeout for FM automotive02/automotive2_4.dimacs after 1800 seconds on 3. run.
+Timeout for FM automotive02/automotive2_4.dimacs after 1800 seconds on 4. run.
+Timeout for FM automotive02/automotive2_4.dimacs after 1800 seconds on 5. run.
+### Finished sampling for FM automotive02/automotive2_4.dimacs.
+
+### Start sampling for FM Smarch/embtoolkit.dimacs with 23516 features:
+Start original algorithm:
+Timeout for FM Smarch/embtoolkit.dimacs after 1800 seconds.
+Start adapted algorithm:
+Timeout for FM Smarch/embtoolkit.dimacs after 1800 seconds.
+Timeout for FM Smarch/embtoolkit.dimacs after 1800 seconds.
+Timeout for FM Smarch/embtoolkit.dimacs after 1800 seconds.
+Timeout for FM Smarch/embtoolkit.dimacs after 1800 seconds.
+Timeout for FM Smarch/embtoolkit.dimacs after 1800 seconds.
+Start YASA algorithm:
+Timeout for FM Smarch/embtoolkit.dimacs after 1800 seconds on 1. run.
+Timeout for FM Smarch/embtoolkit.dimacs after 1800 seconds on 2. run.
+Timeout for FM Smarch/embtoolkit.dimacs after 1800 seconds on 3. run.
+Timeout for FM Smarch/embtoolkit.dimacs after 1800 seconds on 4. run.
+Timeout for FM Smarch/embtoolkit.dimacs after 1800 seconds on 5. run.
+### Finished sampling for FM Smarch/embtoolkit.dimacs.
+

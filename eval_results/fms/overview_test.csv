@@ -1,0 +1,5 @@
+cnf,variables,clauses
+Smarch/Dune.dimacs,17,16
+Smarch/LLVM.dimacs,11,1
+Smarch/X264.dimacs,16,11
+featureide_examples/berkeleydb.dimacs,76,141
